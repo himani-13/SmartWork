@@ -1,26 +1,37 @@
 import { Link } from "react-router-dom";
+import "../style.css";
 
 function Navbar(){
 
 return(
 
-<div className="navbar">
+<nav className="navbar">
 
 <div className="logo">
 Spartan Tech Marketplace
 </div>
 
-<div>
+<div className="nav-links">
 
 <Link to="/">Home</Link>
 
 <Link to="/marketplace">Marketplace</Link>
 
-<Link to="/admin">Admin Dashboard</Link>
+<Link to="/dashboard">Dashboard</Link>
+
+<Link to="/profile">Profile</Link>
+
+<button className="login-btn">
+Login
+</button>
+
+<button className="signup-btn">
+Sign Up
+</button>
 
 </div>
 
-</div>
+</nav>
 
 )
 

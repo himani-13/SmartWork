@@ -8,13 +8,15 @@ import Marketplace from "./pages/Marketplace";
 import ProjectDetails from "./pages/ProjectDetails";
 import AdminDashboard from "./pages/AdminDashboard";
 
-/* NEW PAGES */
-import ApplyProject from "./pages/ApplyProject"
+/* PROJECT PAGES */
+import ApplyProject from "./pages/ApplyProject";
 import ApplicationStatus from "./pages/ApplicationStatus";
-import DeveloperRegister from "./pages/DeveloperRegister";
 import PostProject from "./pages/PostProject";
 
-/* ADMIN DATA PAGES */
+/* DEVELOPER */
+import DeveloperRegister from "./pages/DeveloperRegister";
+
+/* ADMIN */
 import AdminUsers from "./pages/AdminUsers";
 import AdminProjects from "./pages/AdminProjects";
 
@@ -24,8 +26,10 @@ function App() {
 
     <BrowserRouter>
 
+      {/* GLOBAL NAVBAR */}
       <Navbar />
 
+      {/* ROUTES */}
       <Routes>
 
         {/* HOME */}
@@ -38,14 +42,10 @@ function App() {
         <Route path="/project/:id" element={<ProjectDetails />} />
 
         {/* APPLY PROJECT */}
-        <Route path="/apply/:id" element={<ApplyProject/>} />
+        <Route path="/apply/:id" element={<ApplyProject />} />
 
-        {/* ADMIN DASHBOARD */}
-        <Route path="/admin" element={<AdminDashboard />} />
-
-        {/* ADMIN DATA PAGES */}
-        <Route path="/admin/users" element={<AdminUsers />} />
-        <Route path="/admin/projects" element={<AdminProjects />} />
+        {/* POST PROJECT */}
+        <Route path="/post-project" element={<PostProject />} />
 
         {/* APPLICATION STATUS */}
         <Route path="/application-status" element={<ApplicationStatus />} />
@@ -53,8 +53,12 @@ function App() {
         {/* DEVELOPER REGISTER */}
         <Route path="/developer-register" element={<DeveloperRegister />} />
 
-        {/* POST PROJECT */}
-        <Route path="/post-project" element={<PostProject />} />
+        {/* ADMIN DASHBOARD */}
+        <Route path="/admin" element={<AdminDashboard />} />
+
+        {/* ADMIN DATA */}
+        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/projects" element={<AdminProjects />} />
 
       </Routes>
 

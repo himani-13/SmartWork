@@ -34,39 +34,36 @@ return(
 
 <div>
 
-{/* NAVBAR */}
-
-<nav className="navbar">
-
-<h2 className="logo">SmartWork</h2>
-
-<div className="nav-links">
-<a href="/">Home</a>
-<a href="/marketplace">Marketplace</a>
-<a href="/dashboard">Dashboard</a>
-<a href="/profile">Profile</a>
-</div>
-
-</nav>
-
-
-{/* HERO */}
+{/* HERO SECTION */}
 
 <section className="hero">
 
 <div className="hero-content">
 
-<h1>Global Service Marketplace</h1>
+<h1>Hire the Best Developers Worldwide</h1>
 
 <p>
-Connect clients with talented developers and build amazing
-technology projects together.
+Global Service Marketplace where clients post projects and developers
+get matched using our Smart Matching Engine.
 </p>
+
+<div className="hero-search">
+
+<input
+type="text"
+placeholder="Describe the project you want to build..."
+/>
+
+<button className="search-btn">
+Search
+</button>
+
+</div>
 
 <div className="hero-buttons">
 
 <button className="btn btn-primary">
-Post Project
+Post a Project
 </button>
 
 <button className="btn btn-secondary">
@@ -80,11 +77,50 @@ Find Work
 </section>
 
 
-{/* PLATFORM OVERVIEW */}
+{/* TRUSTED SECTION */}
 
 <section className="section">
 
-<h2>Platform Overview</h2>
+<h2>Trusted by companies worldwide</h2>
+
+<div className="categories">
+
+<div className="category-card">Microsoft</div>
+<div className="category-card">Amazon</div>
+<div className="category-card">Google</div>
+<div className="category-card">IBM</div>
+<div className="category-card">Cloudflare</div>
+
+</div>
+
+</section>
+
+
+{/* CATEGORIES */}
+
+<section className="section">
+
+<h2>Find Developers For Every Type of Work</h2>
+
+<div className="categories">
+
+<div className="category-card">AI & Machine Learning</div>
+<div className="category-card">Web Development</div>
+<div className="category-card">Mobile App Development</div>
+<div className="category-card">UI / UX Design</div>
+<div className="category-card">Cloud & DevOps</div>
+<div className="category-card">Cybersecurity</div>
+
+</div>
+
+</section>
+
+
+{/* PLATFORM STATS */}
+
+<section className="section">
+
+<h2>Marketplace Growth</h2>
 
 <div className="cards">
 
@@ -113,6 +149,54 @@ Find Work
 </section>
 
 
+{/* HOW IT WORKS */}
+
+<section className="section">
+
+<h2>How It Works</h2>
+
+<div className="cards">
+
+<div className="card">
+
+<h3>1. Post Your Project</h3>
+
+<p>
+Clients create projects with required skills,
+budget and timeline.
+</p>
+
+</div>
+
+
+<div className="card">
+
+<h3>2. Smart Matching Engine</h3>
+
+<p>
+Our system recommends best developers based
+on skills and experience.
+</p>
+
+</div>
+
+
+<div className="card">
+
+<h3>3. Hire & Collaborate</h3>
+
+<p>
+Clients select developers and complete the
+project successfully.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
 {/* FEATURES */}
 
 <section className="section">
@@ -123,31 +207,23 @@ Find Work
 
 <div className="card">
 
-<img
-src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-className="feature-img"
-/>
-
 <h3>Developer Profiles</h3>
 
 <p>
-Developers showcase their skills, experience and portfolio.
+Developers showcase their skills,
+portfolio and experience.
 </p>
 
 </div>
 
 
 <div className="card">
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/942/942748.png"
-className="feature-img"
-/>
 
 <h3>Project Marketplace</h3>
 
 <p>
-Clients post projects and developers can apply easily.
+Clients can post projects and developers
+can apply easily.
 </p>
 
 </div>
@@ -155,31 +231,23 @@ Clients post projects and developers can apply easily.
 
 <div className="card">
 
-<img
-src="https://cdn-icons-png.flaticon.com/512/3523/3523887.png"
-className="feature-img"
-/>
-
-<h3>Smart Matching</h3>
+<h3>Smart Developer Matching</h3>
 
 <p>
-AI engine recommends the best developers for projects.
+AI engine recommends best developers
+for every project.
 </p>
 
 </div>
 
 
 <div className="card">
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/2331/2331943.png"
-className="feature-img"
-/>
 
 <h3>Analytics Dashboard</h3>
 
 <p>
-Admin panel with platform insights and analytics.
+Admins monitor platform activity and
+performance metrics.
 </p>
 
 </div>
@@ -196,12 +264,12 @@ Admin panel with platform insights and analytics.
 <h2>Start Your Next Project Today</h2>
 
 <p>
-Join our marketplace and collaborate with developers
-from around the world.
+Join SmartWork and connect with developers
+around the world.
 </p>
 
 <button className="btn btn-primary">
-Join Now
+Get Started
 </button>
 
 </section>
@@ -216,8 +284,8 @@ Join Now
 <div>
 <h3>SmartWork</h3>
 <p>
-Global service marketplace connecting clients
-and developers.
+Global Service Marketplace with smart
+developer matching technology.
 </p>
 </div>
 
@@ -226,6 +294,7 @@ and developers.
 <p>Marketplace</p>
 <p>Post Project</p>
 <p>Developers</p>
+<p>Analytics</p>
 </div>
 
 <div>
@@ -245,7 +314,7 @@ and developers.
 </div>
 
 <p className="copyright">
-© 2026 SmartWork Marketplace
+© 2026 SmartWork Global Marketplace
 </p>
 
 </footer>
