@@ -1532,5 +1532,62 @@ border:none;
 padding:12px;
 border-radius:6px;
 cursor:pointer;
+
+
+
+
+.profile-form-page{
+background:#f4f6fb;
+min-height:100vh;
+padding:40px;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+}
+
+.profile-form-container{
+background:white;
+padding:40px;
+width:600px;
+border-radius:10px;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.profile-form-container h1{
+margin-bottom:20px;
+}
+
+.profile-form-container h2{
+margin-top:25px;
+margin-bottom:10px;
+font-size:18px;
+color:#374151;
+}
+
+.profile-form-container input,
+.profile-form-container textarea{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:1px solid #d1d5db;
+border-radius:6px;
+font-size:14px;
+}
+
+.profile-form-container textarea{
+height:100px;
+resize:none;
+}
+
+.profile-form-container button{
+margin-top:20px;
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:6px;
+cursor:pointer;
+font-weight:600;
+}
 }
 

@@ -12,6 +12,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ApplyProject from "./pages/ApplyProject";
 import ApplicationStatus from "./pages/ApplicationStatus";
 import PostProject from "./pages/PostProject";
+import Profile from "./pages/Profile"
 
 /* DEVELOPER */
 import DeveloperRegister from "./pages/DeveloperRegister";
@@ -51,6 +52,7 @@ return (
 
 {/* POST PROJECT */}
 <Route path="/post-project" element={<PostProject />} />
+<Route path="/profile" element={<Profile/>}/>
 
 {/* APPLICATION STATUS */}
 <Route path="/application-status" element={<ApplicationStatus />} />
