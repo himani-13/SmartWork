@@ -20,6 +20,8 @@ import DeveloperRegister from "./pages/DeveloperRegister";
 import AdminUsers from "./pages/AdminUsers";
 import AdminProjects from "./pages/AdminProjects";
 
+import AdminLogin from "./pages/AdminLogin";
+
 function App() {
 
 return (
@@ -61,6 +63,9 @@ return (
 {/* ADMIN MANAGEMENT */}
 <Route path="/admin/users" element={<AdminUsers />} />
 <Route path="/admin/projects" element={<AdminProjects />} />
+
+<Route path="/admin-login" element={<AdminLogin />} />
+<Route path="/dashboard" element={<AdminDashboard />} />
 
 </Routes>
 

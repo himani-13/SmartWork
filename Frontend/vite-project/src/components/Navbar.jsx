@@ -17,7 +17,7 @@ Spartan Tech Marketplace
 
 <Link to="/marketplace">Marketplace</Link>
 
-<Link to="/dashboard">Dashboard</Link>
+<Link to="/admin-login">Dashboard</Link>
 
 <Link to="/profile">Profile</Link>
 
