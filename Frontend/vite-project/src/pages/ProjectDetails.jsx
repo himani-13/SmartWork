@@ -2,6 +2,10 @@ import { useParams } from "react-router-dom"
 import projects from "../data/projects"
 import "../style.css"
 
+import getRecommendations from "../utils/getRecommendations"
+
+const recommended = getRecommendations(project)
+
 function ProjectDetails(){
 
 const { id } = useParams()

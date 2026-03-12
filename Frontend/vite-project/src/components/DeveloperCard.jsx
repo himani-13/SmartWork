@@ -26,4 +26,4 @@ View Profile
 
 }
 
-export default DeveloperCard
+export default DeveloperCard 
