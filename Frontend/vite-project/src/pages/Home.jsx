@@ -13,21 +13,14 @@ const [countries,setCountries]=useState(0)
 
 useEffect(()=>{
 
-let p=0,d=0,c=0,co=0
+let interval=setInterval(()=>{
 
-const interval=setInterval(()=>{
+setProjects(prev => prev < 500 ? prev + 10 : 500)
+setDevelopers(prev => prev < 200 ? prev + 5 : 200)
+setClients(prev => prev < 300 ? prev + 6 : 300)
+setCountries(prev => prev < 40 ? prev + 1 : 40)
 
-if(p<500) p+=10
-if(d<200) d+=5
-if(c<300) c+=6
-if(co<40) co+=1
-
-setProjects(p)
-setDevelopers(d)
-setClients(c)
-setCountries(co)
-
-},40)
+},30)
 
 return ()=>clearInterval(interval)
 
@@ -37,7 +30,7 @@ return(
 
 <div>
 
-{/* HERO SECTION */}
+{/* HERO */}
 
 <section className="hero">
 
@@ -86,19 +79,37 @@ Find Work
 </section>
 
 
-{/* TRUSTED SECTION */}
+{/* TRUSTED COMPANIES */}
 
-<section className="section">
+<section className="trusted-section">
 
 <h2>Trusted by companies worldwide</h2>
 
-<div className="categories">
+<div className="logo-marquee">
 
-<div className="category-card">Microsoft</div>
-<div className="category-card">Amazon</div>
-<div className="category-card">Google</div>
-<div className="category-card">IBM</div>
-<div className="category-card">Cloudflare</div>
+<div className="logo-track">
+
+<img src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/google-icon.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/amazon-icon.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/stripe-4.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/cloudflare-1.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/ibm.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/netflix-3.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/meta-1.svg" />
+
+{/* duplicate for infinite scroll */}
+
+<img src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/google-icon.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/amazon-icon.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/stripe-4.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/cloudflare-1.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/ibm.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/netflix-3.svg" />
+<img src="https://cdn.worldvectorlogo.com/logos/meta-1.svg" />
+
+</div>
 
 </div>
 
@@ -111,21 +122,44 @@ Find Work
 
 <h2>Find Developers For Every Type of Work</h2>
 
-<div className="categories">
+<div className="category-row">
 
-<div className="category-card">AI & Machine Learning</div>
-<div className="category-card">Web Development</div>
-<div className="category-card">Mobile App Development</div>
-<div className="category-card">UI / UX Design</div>
-<div className="category-card">Cloud & DevOps</div>
-<div className="category-card">Cybersecurity</div>
+<div className="category-long">
+<h3>AI & Machine Learning</h3>
+<p>Build predictive models, AI automation and data intelligence systems.</p>
+</div>
+
+<div className="category-long">
+<h3>Web Development</h3>
+<p>Frontend, backend and full-stack development for modern applications.</p>
+</div>
+
+<div className="category-long">
+<h3>Mobile Apps</h3>
+<p>Native and cross-platform mobile apps for Android and iOS.</p>
+</div>
+
+<div className="category-long">
+<h3>UI / UX Design</h3>
+<p>Create modern user experiences with research-driven design.</p>
+</div>
+
+<div className="category-long">
+<h3>Cloud & DevOps</h3>
+<p>Infrastructure automation, CI/CD pipelines and scalable deployments.</p>
+</div>
+
+<div className="category-long">
+<h3>Cybersecurity</h3>
+<p>Security audits, penetration testing and threat monitoring.</p>
+</div>
 
 </div>
 
 </section>
 
 
-{/* PLATFORM STATS */}
+{/* MARKETPLACE GROWTH */}
 
 <section className="section">
 
@@ -160,9 +194,14 @@ Find Work
 
 {/* HOW IT WORKS */}
 
-<section className="section">
+<section className="how-section">
 
 <h2>How It Works</h2>
+
+<img
+className="how-image"
+src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"
+/>
 
 <div className="cards">
 
@@ -171,33 +210,43 @@ Find Work
 <h3>1. Post Your Project</h3>
 
 <p>
-Clients create projects with required skills,
-budget and timeline.
+Create projects with required skills, budget and timeline.
 </p>
 
-</div>
+<ul>
+<li>Define project scope</li>
+<li>Set milestones and budget</li>
+</ul>
 
+</div>
 
 <div className="card">
 
 <h3>2. Smart Matching Engine</h3>
 
 <p>
-Our system recommends best developers based
-on skills and experience.
+Our AI system recommends developers based on skill match.
 </p>
 
-</div>
+<ul>
+<li>Skill based recommendation</li>
+<li>Experience ranking</li>
+</ul>
 
+</div>
 
 <div className="card">
 
 <h3>3. Hire & Collaborate</h3>
 
 <p>
-Clients select developers and complete the
-project successfully.
+Select developers and collaborate until the project is finished.
 </p>
+
+<ul>
+<li>Secure communication</li>
+<li>Milestone payments</li>
+</ul>
 
 </div>
 
@@ -206,7 +255,7 @@ project successfully.
 </section>
 
 
-{/* FEATURES */}
+{/* PLATFORM FEATURES */}
 
 <section className="section">
 
@@ -214,49 +263,50 @@ project successfully.
 
 <div className="cards">
 
-<div className="card">
+<div className="feature-card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"/>
 
 <h3>Developer Profiles</h3>
 
 <p>
-Developers showcase their skills,
-portfolio and experience.
+Professional portfolios with verified skills and experience.
 </p>
 
 </div>
 
+<div className="feature-card">
 
-<div className="card">
+<img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"/>
 
 <h3>Project Marketplace</h3>
 
 <p>
-Clients can post projects and developers
-can apply easily.
+Clients post projects and developers apply instantly.
 </p>
 
 </div>
 
+<div className="feature-card">
 
-<div className="card">
+<img src="https://cdn-icons-png.flaticon.com/512/4149/4149675.png"/>
 
 <h3>Smart Developer Matching</h3>
 
 <p>
-AI engine recommends best developers
-for every project.
+AI recommends best developers for every project.
 </p>
 
 </div>
 
+<div className="feature-card">
 
-<div className="card">
+<img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png"/>
 
 <h3>Analytics Dashboard</h3>
 
 <p>
-Admins monitor platform activity and
-performance metrics.
+Admins monitor platform activity and performance.
 </p>
 
 </div>
@@ -268,68 +318,33 @@ performance metrics.
 
 {/* CTA */}
 
-<section className="cta">
+<section className="cta-modern">
 
 <h2>Start Your Next Project Today</h2>
 
 <p>
-Join SmartWork and connect with developers
-around the world.
+Join SmartWork and connect with developers around the world.
 </p>
+
+<div className="cta-buttons">
 
 <button 
 className="btn btn-primary"
 onClick={()=>navigate("/post-project")}
 >
-Get Started
+Post Project
 </button>
 
+<button 
+className="btn btn-secondary"
+onClick={()=>navigate("/marketplace")}
+>
+Explore Marketplace
+</button>
+
+</div>
+
 </section>
-
-
-{/* FOOTER */}
-
-<footer className="footer">
-
-<div className="footer-grid">
-
-<div>
-<h3>SmartWork</h3>
-<p>
-Global Service Marketplace with smart
-developer matching technology.
-</p>
-</div>
-
-<div>
-<h4>Platform</h4>
-<p>Marketplace</p>
-<p>Post Project</p>
-<p>Developers</p>
-<p>Analytics</p>
-</div>
-
-<div>
-<h4>Company</h4>
-<p>About</p>
-<p>Careers</p>
-<p>Contact</p>
-</div>
-
-<div>
-<h4>Support</h4>
-<p>Help Center</p>
-<p>Terms</p>
-<p>Privacy Policy</p>
-</div>
-
-</div>
-
-<p className="copyright">
-© 2026 SmartWork Global Marketplace
-</p>
-
-</footer>
 
 </div>
 
