@@ -1,9 +1,9 @@
-import { useState } from "react";
-import "../style.css"
+import { useState } from "react"
+import "../style.css";
 
-function DeveloperProfileForm(){
+function Profile(){
 
-const [profile,setProfile] = useState({
+const [form,setForm] = useState({
 name:"",
 email:"",
 location:"",
@@ -14,127 +14,135 @@ bio:"",
 portfolio:"",
 github:"",
 linkedin:""
-});
+})
 
-const handleChange = (e)=>{
-setProfile({
-...profile,
+function handleChange(e){
+setForm({
+...form,
 [e.target.name]:e.target.value
-});
-};
+})
+}
 
-const handleSubmit=(e)=>{
-e.preventDefault();
-
-console.log("Profile Data:",profile);
-
-alert("Profile Saved Successfully");
-};
+function handleSubmit(e){
+e.preventDefault()
+console.log(form)
+alert("Profile Saved")
+}
 
 return(
 
-<div className="profile-form-page">
+<div className="profilePage">
 
-<div className="profile-form-container">
+<div className="profileContainer">
 
-<h1>Create Developer Profile</h1>
+<h1 className="profileTitle">Developer Profile</h1>
 
 <form onSubmit={handleSubmit}>
 
+{/* PROFILE HEADER */}
+
+<div className="profileHeader">
+
+<div className="profilePhoto">
+<img src="https://randomuser.me/api/portraits/men/32.jpg"/>
+<button type="button">Upload Photo</button>
+</div>
+
+<div className="profileHeaderInfo">
+
+<div className="formGroup">
+<label>Full Name</label>
+<input type="text" name="name" onChange={handleChange}/>
+</div>
+
+<div className="formGroup">
+<label>Email</label>
+<input type="email" name="email" onChange={handleChange}/>
+</div>
+
+</div>
+
+</div>
+
+
 {/* BASIC INFO */}
+
+<div className="profileSection">
 
 <h2>Basic Information</h2>
 
-<input
-type="text"
-name="name"
-placeholder="Full Name"
-onChange={handleChange}
-required
-/>
+<div className="grid2">
 
-<input
-type="email"
-name="email"
-placeholder="Email"
-onChange={handleChange}
-required
-/>
+<div className="formGroup">
+<label>Location</label>
+<input type="text" name="location" onChange={handleChange}/>
+</div>
 
-<input
-type="text"
-name="location"
-placeholder="Location / Country"
-onChange={handleChange}
-/>
+<div className="formGroup">
+<label>Experience (Years)</label>
+<input type="number" name="experience" onChange={handleChange}/>
+</div>
+
+</div>
+
+</div>
+
 
 {/* SKILLS */}
 
+<div className="profileSection">
+
 <h2>Skills</h2>
 
-<input
-type="text"
-name="primarySkill"
-placeholder="Primary Skill (ex: React)"
-onChange={handleChange}
-/>
+<div className="grid2">
 
-<input
-type="text"
-name="secondarySkills"
-placeholder="Secondary Skills (comma separated)"
-onChange={handleChange}
-/>
+<div className="formGroup">
+<label>Primary Skill</label>
+<input type="text" name="primarySkill" onChange={handleChange}/>
+</div>
 
-{/* EXPERIENCE */}
+<div className="formGroup">
+<label>Secondary Skills</label>
+<input type="text" name="secondarySkills" onChange={handleChange}/>
+</div>
 
-<h2>Experience</h2>
+</div>
 
-<input
-type="number"
-name="experience"
-placeholder="Years of Experience"
-onChange={handleChange}
-/>
+</div>
+
 
 {/* BIO */}
 
-<h2>Short Bio</h2>
+<div className="profileSection">
+
+<h2>About Developer</h2>
 
 <textarea
 name="bio"
-placeholder="Write short bio..."
+placeholder="Write about your experience..."
 onChange={handleChange}
 />
+
+</div>
+
 
 {/* PORTFOLIO */}
 
+<div className="profileSection">
+
 <h2>Portfolio Links</h2>
 
-<input
-type="text"
-name="portfolio"
-placeholder="Portfolio Website"
-onChange={handleChange}
-/>
+<div className="grid3">
 
-<input
-type="text"
-name="github"
-placeholder="Github Profile"
-onChange={handleChange}
-/>
+<input type="text" name="portfolio" placeholder="Portfolio Website" onChange={handleChange}/>
+<input type="text" name="github" placeholder="Github Profile" onChange={handleChange}/>
+<input type="text" name="linkedin" placeholder="LinkedIn Profile" onChange={handleChange}/>
 
-<input
-type="text"
-name="linkedin"
-placeholder="LinkedIn Profile"
-onChange={handleChange}
-/>
+</div>
 
-<button type="submit">
-Save Profile
-</button>
+</div>
+
+<button className="saveProfileBtn">Save Profile</button>
 
 </form>
 
@@ -142,7 +150,8 @@ Save Profile
 
 </div>
 
-);
+)
+
 }
 
-export default DeveloperProfileForm;
+export default Profile
