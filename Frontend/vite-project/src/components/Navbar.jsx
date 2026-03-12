@@ -21,13 +21,21 @@ Spartan Tech Marketplace
 
 <Link to="/profile">Profile</Link>
 
+{/* LOGIN BUTTON */}
+
+<Link to="/admin-login">
 <button className="login-btn">
 Login
 </button>
+</Link>
 
+{/* SIGNUP BUTTON */}
+
+<Link to="/signup">
 <button className="signup-btn">
 Sign Up
 </button>
+</Link>
 
 </div>
 
