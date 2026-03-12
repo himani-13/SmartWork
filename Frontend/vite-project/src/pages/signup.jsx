@@ -38,8 +38,6 @@ setError("Passwords do not match")
 return
 }
 
-/* TERMS VALIDATION */
-
 if(!terms){
 setError("Please accept Terms & Conditions to continue")
 return
@@ -55,7 +53,7 @@ navigate("/dashboard")
 
 return(
 
-<div className="signup-page">
+<div className="signup-container">
 
 <div className="signup-left">
 
@@ -67,7 +65,6 @@ Create an account to hire developers or start working on global projects.
 
 <img
 src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
-alt="signup"
 />
 
 </div>
@@ -75,13 +72,14 @@ alt="signup"
 
 <div className="signup-right">
 
-<div className="signup-card">
+<form className="signup-form" onSubmit={handleSignup}>
 
 <h2>Create Account</h2>
 
-<div className="role-select">
+<div className="user-type">
 
 <button
+type="button"
 className={role==="client" ? "active":""}
 onClick={()=>setRole("client")}
 >
@@ -89,6 +87,7 @@ Client
 </button>
 
 <button
+type="button"
 className={role==="developer" ? "active":""}
 onClick={()=>setRole("developer")}
 >
@@ -97,8 +96,6 @@ Developer
 
 </div>
 
-
-<form onSubmit={handleSignup}>
 
 <input
 type="text"
@@ -137,8 +134,6 @@ onChange={(e)=>setConfirm(e.target.value)}
 />
 
 
-{/* TERMS */}
-
 <label className="terms">
 
 <input
@@ -152,8 +147,6 @@ I agree to the Terms & Conditions
 </label>
 
 
-{/* ERROR MESSAGE */}
-
 {error && <p className="error">{error}</p>}
 
 
@@ -162,8 +155,6 @@ Create Account
 </button>
 
 </form>
-
-</div>
 
 </div>
 
