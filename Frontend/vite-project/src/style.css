@@ -1360,3 +1360,173 @@ font-size:13px;
 color:#6b7280;
 
 }
+
+/* SIGNUP PAGE */
+
+.signup-page{
+display:flex;
+min-height:100vh;
+}
+
+
+/* LEFT SIDE */
+
+.signup-left{
+flex:1;
+background:linear-gradient(135deg,#2563eb,#4f46e5);
+color:white;
+padding:80px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.signup-left h1{
+font-size:42px;
+margin-bottom:20px;
+}
+
+.signup-left p{
+max-width:400px;
+line-height:1.6;
+margin-bottom:30px;
+}
+
+.signup-left img{
+width:320px;
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+}
+
+
+/* RIGHT SIDE */
+
+.signup-right{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#f9fafb;
+}
+
+.signup-card{
+background:white;
+padding:40px;
+border-radius:14px;
+box-shadow:0 15px 40px rgba(0,0,0,0.1);
+width:420px;
+}
+
+.signup-card h2{
+margin-bottom:20px;
+}
+
+
+/* ROLE SELECT */
+
+.role-select{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.role-select button{
+flex:1;
+padding:10px;
+border-radius:8px;
+border:1px solid #ddd;
+background:white;
+cursor:pointer;
+}
+
+.role-select .active{
+background:#22c55e;
+color:white;
+border:none;
+}
+
+
+/* FORM */
+
+.signup-card form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.signup-card input{
+padding:12px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+
+/* PASSWORD */
+
+.password-box{
+position:relative;
+}
+
+.password-box span{
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+}
+
+
+/* TERMS */
+
+.terms{
+font-size:13px;
+color:#555;
+}
+
+
+/* BUTTON */
+
+.signup-btn-main{
+background:linear-gradient(90deg,#22c55e,#16a34a);
+color:white;
+padding:12px;
+border:none;
+border-radius:8px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.signup-btn-main:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+
+/* ERROR */
+
+.error{
+color:#ef4444;
+font-size:13px;
+}
+
+
+/* LOGIN LINK */
+
+.login-link{
+font-size:13px;
+text-align:center;
+color:#2563eb;
+cursor:pointer;
+}
+
+.error{
+color:#ef4444;
+font-size:14px;
+margin-top:5px;
+}

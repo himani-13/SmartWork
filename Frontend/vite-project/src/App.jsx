@@ -22,6 +22,8 @@ import AdminProjects from "./pages/AdminProjects";
 
 import AdminLogin from "./pages/AdminLogin";
 
+import Signup from "./pages/signup"
+
 function App() {
 
 return (
@@ -66,6 +68,8 @@ return (
 
 <Route path="/admin-login" element={<AdminLogin />} />
 <Route path="/dashboard" element={<AdminDashboard />} />
+
+<Route path="/signup" element={<Signup />} />
 
 </Routes>
 
