@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom"
 import projects from "../data/projects"
+import "../style.css"
 
 function ProjectDetails(){
 
 const { id } = useParams()
-
 const project = projects.find(p => p.id === Number(id))
 
 if(!project){
@@ -13,61 +13,66 @@ return <h2>Project not found</h2>
 
 return(
 
-<div className="details-container">
+<div className="project-page">
+
+<div className="project-container">
 
 {/* LEFT SIDE */}
 
-<div className="details-left">
+<div className="project-main">
 
-<h1 className="project-title">{project.title}</h1>
+<h1>{project.title}</h1>
 
 <div className="project-meta">
+
 <span>💰 {project.budget}</span>
 <span>🌍 {project.country}</span>
-<span>⚡ {project.urgency}</span>
 <span>⏱ {project.duration}</span>
+
 </div>
 
-<div className="details-card">
+<div className="project-box">
+
 <h3>Description</h3>
+
 <p>{project.description}</p>
+
 </div>
 
-<div className="details-card">
+<div className="project-box">
+
 <h3>Required Skills</h3>
 
-<div className="skill-tags">
-{project.skills.map((skill,index)=>(
-<span className="skill-tag" key={index}>
+<div className="skills">
+
+{project.skills.map((skill,i)=>(
+<span key={i} className="skill-pill">
 {skill}
 </span>
 ))}
-</div>
 
 </div>
 
 </div>
 
+</div>
 
-{/* RIGHT SIDEBAR */}
 
-<div className="details-right">
+{/* RIGHT SIDE */}
 
-<div className="sidebar-card">
+<div className="project-sidebar">
+
+<div className="apply-card">
 
 <h3>Project Summary</h3>
 
 <p><strong>Client Rating:</strong> ⭐ {project.rating}</p>
 
-<p>
-<strong>AI Match:</strong> {Math.floor(Math.random()*20)+80}%
-</p>
+<p><strong>AI Match:</strong> {Math.floor(Math.random()*20)+80}%</p>
 
-<p>
-<strong>Platform:</strong> {project.platform}
-</p>
+<p><strong>Platform:</strong> {project.platform}</p>
 
-<a
+<a 
 href={project.website}
 target="_blank"
 rel="noopener noreferrer"
@@ -79,6 +84,8 @@ Visit Website
 <button className="apply-btn">
 Apply for Project
 </button>
+
+</div>
 
 </div>
 
