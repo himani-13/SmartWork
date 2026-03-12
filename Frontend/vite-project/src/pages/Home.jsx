@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../style.css";
 
 function Home(){
+
+const navigate = useNavigate()
 
 const [projects,setProjects]=useState(0)
 const [developers,setDevelopers]=useState(0)
@@ -62,11 +65,17 @@ Search
 
 <div className="hero-buttons">
 
-<button className="btn btn-primary">
+<button 
+className="btn btn-primary"
+onClick={()=>navigate("/post-project")}
+>
 Post a Project
 </button>
 
-<button className="btn btn-secondary">
+<button 
+className="btn btn-secondary"
+onClick={()=>navigate("/marketplace")}
+>
 Find Work
 </button>
 
@@ -268,7 +277,10 @@ Join SmartWork and connect with developers
 around the world.
 </p>
 
-<button className="btn btn-primary">
+<button 
+className="btn btn-primary"
+onClick={()=>navigate("/post-project")}
+>
 Get Started
 </button>
 

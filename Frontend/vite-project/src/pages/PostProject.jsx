@@ -1,72 +1,81 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import React, { useState } from "react"
+import "../style.css"
 
 function PostProject(){
 
-const navigate = useNavigate()
+const [title,setTitle]=useState("")
+const [description,setDescription]=useState("")
+const [budget,setBudget]=useState("")
+const [skills,setSkills]=useState("")
+const [deadline,setDeadline]=useState("")
 
-const [title,setTitle] = useState("")
-const [skills,setSkills] = useState("")
-const [budget,setBudget] = useState("")
-const [country,setCountry] = useState("")
-
-function handleSubmit(e){
-
+const handleSubmit=(e)=>{
 e.preventDefault()
-
-const newProject = {
-id: Date.now(),
-title,
-skills,
-budget,
-country
-}
-
-const existing = JSON.parse(localStorage.getItem("projects")) || []
-
-existing.push(newProject)
-
-localStorage.setItem("projects", JSON.stringify(existing))
-
-alert("Project Posted Successfully 🚀")
-
-navigate("/admin/projects")
-
+alert("Project Submitted Successfully 🚀")
 }
 
 return(
 
-<div className="post-container">
+<div className="post-wrapper">
 
-<h2>Post a New Project</h2>
+<div className="post-left">
+
+<h1>Start Your Project 🚀</h1>
+
+<p>
+Tell us what you want to build and our platform
+will connect you with the best developers worldwide.
+</p>
+
+<img
+src="https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif"
+alt="developer"
+/>
+
+</div>
+
+
+<div className="post-right">
+
+<h2>Post Your Project</h2>
 
 <form className="project-form" onSubmit={handleSubmit}>
 
 <input
+type="text"
 placeholder="Project Title"
 value={title}
 onChange={(e)=>setTitle(e.target.value)}
 required
 />
 
-<input
-placeholder="Skills (React,Node)"
-value={skills}
-onChange={(e)=>setSkills(e.target.value)}
+<textarea
+placeholder="Project Description"
+value={description}
+onChange={(e)=>setDescription(e.target.value)}
 required
 />
 
 <input
-placeholder="Budget"
+type="number"
+placeholder="Budget ($)"
 value={budget}
 onChange={(e)=>setBudget(e.target.value)}
 required
 />
 
 <input
-placeholder="Country"
-value={country}
-onChange={(e)=>setCountry(e.target.value)}
+type="text"
+placeholder="Required Skills (React, Node...)"
+value={skills}
+onChange={(e)=>setSkills(e.target.value)}
+required
+/>
+
+<input
+type="date"
+value={deadline}
+onChange={(e)=>setDeadline(e.target.value)}
 required
 />
 
@@ -75,6 +84,8 @@ Post Project
 </button>
 
 </form>
+
+</div>
 
 </div>
 
