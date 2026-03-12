@@ -79,4 +79,4 @@ required
 
 }
 
-export default DeveloperRegister
+export default DeveloperRegister  

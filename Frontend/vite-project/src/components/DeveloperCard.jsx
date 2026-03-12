@@ -1,18 +1,24 @@
-function DeveloperCard({dev}){
+function DeveloperCard(){
 
 return(
 
-<div className="card">
+<div className="developer-card">
 
-<h3>{dev.name}</h3>
+<h3>John Doe</h3>
 
-<p>Primary Skill : {dev.primarySkill}</p>
+<p>Primary Skill: React</p>
 
-<p>Experience : {dev.experience} Years</p>
+<p>Experience: 6 Years</p>
 
-<p>Rating : ⭐ {dev.rating}</p>
+<p>Rating: 4.8</p>
 
-<p>On Time Delivery : {dev.delivery}%</p>
+<p className="match-score">
+Matching Score: 91%
+</p>
+
+<button>
+View Profile
+</button>
 
 </div>
 

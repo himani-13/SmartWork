@@ -4,21 +4,51 @@ function ProjectCard({project}){
 
 return(
 
-<div className="card">
+<div className="project-card">
+
+<div className="header">
 
 <h3>{project.title}</h3>
 
-<p><b>Skills:</b> {project.skills}</p>
+<span className="budget">
+{project.budget}
+</span>
 
-<p><b>Budget:</b> ${project.budget}</p>
+</div>
 
-<p><b>Country:</b> {project.country}</p>
+<p className="desc">
+{project.description}
+</p>
 
-<p><b>Urgency:</b> {project.urgency}</p>
+<div className="skills">
+
+{project.skills.map(skill=>(
+<span className="tag">{skill}</span>
+))}
+
+</div>
+
+<div className="meta">
+
+<span>{project.country}</span>
+
+<span>{project.urgency}</span>
+
+</div>
+
+<div className="actions">
 
 <Link to={`/project/${project.id}`}>
-<button>View Details</button>
+
+<button className="view">View Details</button>
+
 </Link>
+
+<button className="apply">
+Apply
+</button>
+
+</div>
 
 </div>
 

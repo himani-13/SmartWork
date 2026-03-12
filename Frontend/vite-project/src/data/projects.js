@@ -1,48 +1,36 @@
-const projects = [
+const projects=[
 
 {
 id:1,
-title:"E-commerce Website",
-description:"Build a responsive ecommerce website with payment integration.",
+title:"React SaaS Dashboard",
+description:"Build modern SaaS dashboard with analytics.",
 skills:["React","Node"],
-budget:"$1000 - $2000",
-country:"India",
-urgency:"Medium",
-duration:"20 Days",
-rating:4.6,
-platform:"Web",
-website:"https://example.com",
-portfolio:"https://github.com"
+budget:"$3000-$5000",
+budgetValue:5000,
+country:"USA",
+urgency:"High"
 },
 
 {
 id:2,
-title:"Mobile App Development",
-description:"Cross platform mobile application for ecommerce with payment integration.",
-skills:["Flutter","Firebase"],
-budget:"$2000 - $4000",
-country:"USA",
-urgency:"High",
-duration:"30 Days",
-rating:4.8,
-platform:"Android + iOS",
-website:"https://example.com",
-portfolio:"https://github.com"
+title:"AI Chatbot",
+description:"Create chatbot with NLP models.",
+skills:["Python","AI"],
+budget:"$2000-$4000",
+budgetValue:4000,
+country:"UK",
+urgency:"Medium"
 },
 
 {
 id:3,
-title:"Portfolio Website",
-description:"Personal portfolio website with modern UI.",
-skills:["HTML","CSS","JS"],
-budget:"$500 - $800",
-country:"UK",
-urgency:"Low",
-duration:"10 Days",
-rating:4.5,
-platform:"Web",
-website:"https://example.com",
-portfolio:"https://github.com"
+title:"Ecommerce Platform",
+description:"Full ecommerce website with payments.",
+skills:["React","Node"],
+budget:"$4000-$7000",
+budgetValue:7000,
+country:"Canada",
+urgency:"High"
 }
 
 ]

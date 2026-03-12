@@ -1,175 +1,175 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
 import projects from "../data/projects"
+import { Link } from "react-router-dom"
+import { useState } from "react"
 
 function Marketplace(){
 
-const [country,setCountry] = useState("")
-const [skill,setSkill] = useState("")
 const [saved,setSaved] = useState([])
 
-const toggleSave=(id)=>{
+function toggleSave(id){
+
 if(saved.includes(id)){
-setSaved(saved.filter(p=>p!==id))
-}else{
+setSaved(saved.filter(item=>item!==id))
+}
+else{
 setSaved([...saved,id])
 }
+
 }
-
-const filtered = projects.filter(p => {
-
-const skills = Array.isArray(p.skills)
-? p.skills.join(" ").toLowerCase()
-: (p.skills || "").toLowerCase()
-
-return (
-(country === "" || p.country === country) &&
-(skill === "" || skills.includes(skill.toLowerCase()))
-)
-
-})
 
 return(
 
-<div className="marketplace-layout">
+<div className="ultra-market">
 
 {/* SIDEBAR */}
 
-<div className="marketplace-sidebar">
+<div className="ultra-sidebar">
 
-<h3>Filters</h3>
+<h2>Find Projects</h2>
 
-<label>Country</label>
+<input placeholder="Search projects"/>
 
-<select
-value={country}
-onChange={(e)=>setCountry(e.target.value)}
->
-<option value="">All</option>
-<option value="USA">USA</option>
-<option value="India">India</option>
-<option value="UK">UK</option>
+<select>
+<option>Category</option>
+<option>Web Development</option>
+<option>Mobile App</option>
+<option>AI / ML</option>
 </select>
 
-<label>Skill</label>
+<select>
+<option>Budget</option>
+<option>$100-$500</option>
+<option>$500-$2000</option>
+<option>$2000+</option>
+</select>
 
-<input
-type="text"
-placeholder="React, AI..."
-value={skill}
-onChange={(e)=>setSkill(e.target.value)}
+<select>
+<option>Country</option>
+<option>USA</option>
+<option>UK</option>
+<option>India</option>
+</select>
+
+<div className="sidebar-banner">
+
+<img
+src="https://images.unsplash.com/photo-1551434678-e076c223a692"
+alt="workspace"
 />
+
+<p>Discover high paying freelance projects</p>
 
 </div>
 
+</div>
+
+
 {/* MAIN CONTENT */}
 
-<div className="marketplace-content">
+<div className="ultra-content">
 
-<h1 className="marketplace-title">
-Project Marketplace
+<h1 className="market-heading">
+Global Freelance Marketplace
 </h1>
 
-<div className="project-grid">
+<div className="job-grid">
 
-{filtered.map(p => {
+{projects.map(project => (
 
-const match = Math.floor(Math.random()*40)+60
-const rating = (Math.random()*2+3).toFixed(1)
+<div className="ultra-card" key={project.id}>
 
-return(
-
-<div className="project-card" key={p.id}>
-
-{/* PROJECT IMAGE */}
-
-<img
-className="project-image"
-src={`https://picsum.photos/400/200?random=${p.id}`}
-alt="project"
-/>
-
-{/* SAVE BUTTON */}
+{/* SAVE ICON */}
 
 <button
-className="save-btn"
-onClick={()=>toggleSave(p.id)}
+className="save-icon"
+onClick={()=>toggleSave(project.id)}
 >
-{saved.includes(p.id) ? "❤️" : "🤍"}
+{saved.includes(project.id) ? "❤️" : "🤍"}
 </button>
+
 
 {/* HEADER */}
 
 <div className="card-header">
 
-<img
-src={`https://i.pravatar.cc/60?img=${p.id}`}
-alt="client"
-/>
+<h3>{project.title}</h3>
 
-<div>
-
-<h3 className="project-title">{p.title}</h3>
-
-<p className="project-country">{p.country}</p>
+<span className="budget">
+{project.budget}
+</span>
 
 </div>
 
-</div>
+<p className="description">
+{project.description}
+</p>
+
 
 {/* SKILLS */}
 
-<div className="skill-tags">
+<div className="skills">
 
-{Array.isArray(p.skills)
-? p.skills.map((s,i)=>(
-<span key={i} className="tag">{s}</span>
-))
-: <span className="tag">{p.skills}</span>
-}
+{project.skills.map((skill,i)=>(
+
+<span className="skill-pill" key={i}>
+{skill}
+</span>
+
+))}
 
 </div>
 
-<p className="project-info">
-Budget: <b>{p.budget}</b>
-</p>
 
-<p className="project-info">
-Urgency: <span className="urgency">{p.urgency}</span>
-</p>
+{/* CLIENT INFO */}
 
-<p className="rating">
-⭐ {rating} Client Rating
-</p>
+<div className="client-meta">
 
-{/* MATCH BAR */}
+<span>🌍 {project.country}</span>
+<span>⭐ {project.rating}</span>
+<span>⏱ {project.duration}</span>
 
-<div className="match-box">
+</div>
 
-<p>Match Score {match}%</p>
+
+{/* MATCH SCORE */}
+
+<div className="match-section">
+
+<span>AI Match</span>
 
 <div className="match-bar">
 
 <div
 className="match-fill"
-style={{width:`${match}%`}}
+style={{
+width:`${Math.floor(Math.random()*20)+80}%`
+}}
 ></div>
 
 </div>
 
 </div>
 
-<Link to={`/project/${p.id}`}>
+
+{/* ACTIONS */}
+
+<div className="actions">
+
+<Link to={`/project/${project.id}`}>
 <button className="view-btn">
 View Details
 </button>
 </Link>
 
+<button className="apply-btn">
+Apply
+</button>
+
 </div>
 
-)
+</div>
 
-})}
+))}
 
 </div>
 

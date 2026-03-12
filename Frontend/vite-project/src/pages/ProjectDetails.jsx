@@ -13,69 +13,76 @@ return <h2>Project not found</h2>
 
 return(
 
-<div className="project-details-container">
+<div className="details-container">
 
-<div className="project-header">
-<h1>{project.title}</h1>
+{/* LEFT SIDE */}
+
+<div className="details-left">
+
+<h1 className="project-title">{project.title}</h1>
 
 <div className="project-meta">
-<span>Budget: {project.budget}</span>
-<span>Country: {project.country}</span>
-<span>Urgency: {project.urgency}</span>
-<span>Duration: {project.duration}</span>
+<span>💰 {project.budget}</span>
+<span>🌍 {project.country}</span>
+<span>⚡ {project.urgency}</span>
+<span>⏱ {project.duration}</span>
 </div>
 
-</div>
-
-<div className="project-grid">
-
-<div className="project-box">
-<strong>Description</strong>
+<div className="details-card">
+<h3>Description</h3>
 <p>{project.description}</p>
 </div>
 
-<div className="project-box">
-<strong>Client Rating</strong>
-<p>⭐ {project.rating}</p>
-</div>
-
-<div className="project-box">
-<strong>Matching Score</strong>
-<p>{Math.floor(Math.random()*20)+80}%</p>
-</div>
-
-<div className="project-box">
-<strong>Platform</strong>
-<p>{project.platform}</p>
-</div>
-
-</div>
+<div className="details-card">
+<h3>Required Skills</h3>
 
 <div className="skill-tags">
-
 {project.skills.map((skill,index)=>(
 <span className="skill-tag" key={index}>
 {skill}
 </span>
 ))}
+</div>
 
 </div>
 
-<div className="project-links">
+</div>
 
-<a href={project.website} target="_blank" rel="noopener noreferrer">
+
+{/* RIGHT SIDEBAR */}
+
+<div className="details-right">
+
+<div className="sidebar-card">
+
+<h3>Project Summary</h3>
+
+<p><strong>Client Rating:</strong> ⭐ {project.rating}</p>
+
+<p>
+<strong>AI Match:</strong> {Math.floor(Math.random()*20)+80}%
+</p>
+
+<p>
+<strong>Platform:</strong> {project.platform}
+</p>
+
+<a
+href={project.website}
+target="_blank"
+rel="noopener noreferrer"
+className="visit-btn"
+>
 Visit Website
 </a>
-
-<a href={project.portfolio} target="_blank" rel="noopener noreferrer">
-View Portfolio
-</a>
-
-</div>
 
 <button className="apply-btn">
 Apply for Project
 </button>
+
+</div>
+
+</div>
 
 </div>
 

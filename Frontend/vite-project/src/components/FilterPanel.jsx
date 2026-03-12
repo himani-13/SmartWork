@@ -1,30 +1,31 @@
-function FilterPanel(){
+function FilterPanel({setSkill,setCountry}){
 
 return(
 
 <div className="filters">
 
-<input placeholder="Search by skill" />
+<h3>Filters</h3>
 
-<select>
-<option>Country</option>
-<option>USA</option>
-<option>India</option>
-<option>UK</option>
+<label>Skill</label>
+
+<select onChange={(e)=>setSkill(e.target.value)}>
+
+<option value="">All</option>
+<option value="React">React</option>
+<option value="Node">Node</option>
+<option value="Python">Python</option>
+
 </select>
 
-<select>
-<option>Budget</option>
-<option>0 - 1000</option>
-<option>1000 - 5000</option>
-<option>5000+</option>
-</select>
+<label>Country</label>
 
-<select>
-<option>Urgency</option>
-<option>Low</option>
-<option>Medium</option>
-<option>High</option>
+<select onChange={(e)=>setCountry(e.target.value)}>
+
+<option value="">All</option>
+<option value="USA">USA</option>
+<option value="UK">UK</option>
+<option value="India">India</option>
+
 </select>
 
 </div>
