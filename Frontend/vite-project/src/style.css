@@ -885,3 +885,478 @@ border:none;
 padding:6px 12px;
 border-radius:5px;
 }
+
+/* STEP PROGRESS BAR */
+
+.step-bar{
+
+display:flex;
+gap:15px;
+margin-bottom:25px;
+
+}
+
+.step{
+
+width:32px;
+height:32px;
+border-radius:50%;
+background:#e5e7eb;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.step.done{
+
+background:#4f46e5;
+color:white;
+transform:scale(1.1);
+
+}
+
+
+/* LOGIN FORM */
+
+.login-form{
+
+display:flex;
+flex-direction:column;
+gap:12px;
+background:white;
+padding:35px;
+border-radius:12px;
+
+box-shadow:0 15px 40px rgba(0,0,0,0.1);
+
+}
+
+
+/* LABEL */
+
+.login-form label{
+
+font-size:13px;
+font-weight:600;
+color:#374151;
+
+}
+
+
+/* INPUT */
+
+.login-form input{
+
+padding:12px;
+border-radius:8px;
+border:1px solid #ddd;
+transition:.25s;
+
+}
+
+.login-form input:focus{
+
+border-color:#4f46e5;
+box-shadow:0 0 0 3px rgba(79,70,229,0.2);
+outline:none;
+
+}
+
+
+/* BUTTON */
+
+.login-form button{
+
+margin-top:10px;
+background:linear-gradient(90deg,#4f46e5,#6366f1);
+color:white;
+padding:12px;
+border:none;
+border-radius:8px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.login-form button:hover{
+
+transform:translateY(-2px);
+box-shadow:0 12px 25px rgba(79,70,229,0.4);
+
+}
+
+
+/* ERROR MESSAGE */
+
+.error{
+
+color:#ef4444;
+font-size:13px;
+
+animation:shake .3s;
+
+}
+
+@keyframes shake{
+
+0%{transform:translateX(0)}
+25%{transform:translateX(-3px)}
+50%{transform:translateX(3px)}
+75%{transform:translateX(-3px)}
+100%{transform:translateX(0)}
+
+}
+
+/* PROGRESS BAR */
+
+.progress-container{
+
+display:flex;
+gap:10px;
+margin-bottom:25px;
+
+}
+
+.progress-step{
+
+flex:1;
+height:6px;
+background:#e5e7eb;
+border-radius:5px;
+transition:.4s;
+
+}
+
+.progress-step.done{
+
+background:#22c55e;
+
+}
+
+
+/* PASSWORD BOX */
+
+.password-box{
+
+position:relative;
+
+}
+
+.password-box span{
+
+position:absolute;
+right:12px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:16px;
+
+}
+
+
+/* DEMO BUTTON */
+
+.demo-btn{
+
+margin-top:10px;
+background:#e5e7eb;
+color:#111;
+border:none;
+padding:10px;
+border-radius:6px;
+cursor:pointer;
+
+}
+
+.demo-btn:hover{
+
+background:#d1d5db;
+
+}
+
+
+/* ERROR */
+
+.error{
+
+color:#ef4444;
+font-size:13px;
+margin-top:4px;
+
+}
+
+/* PROGRESS LINES */
+
+.progress-lines{
+
+display:flex;
+gap:10px;
+margin-bottom:25px;
+
+}
+
+.line{
+
+flex:1;
+height:6px;
+background:#e5e7eb;
+border-radius:4px;
+transition:.4s;
+
+}
+
+.line.active{
+
+background:#22c55e;
+
+}
+
+
+/* PASSWORD FIELD */
+
+.password-field{
+
+position:relative;
+
+}
+
+.password-field span{
+
+position:absolute;
+right:12px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:16px;
+
+}
+
+
+/* DEMO TEXT */
+
+.demo-text{
+
+margin-top:12px;
+font-size:13px;
+color:#6b7280;
+
+}
+
+
+/* ERROR */
+
+.error{
+
+color:#ef4444;
+font-size:13px;
+margin-top:6px;
+
+}
+
+/* ADMIN LOGIN */
+
+.admin-login-container{
+
+display:flex;
+min-height:90vh;
+
+}
+
+/* LEFT PANEL */
+
+.admin-login-left{
+
+flex:1;
+background:linear-gradient(135deg,#4f46e5,#6366f1);
+color:white;
+padding:80px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+
+}
+
+.admin-login-left h1{
+
+font-size:42px;
+margin-bottom:20px;
+
+}
+
+.admin-login-left p{
+
+max-width:420px;
+line-height:1.6;
+
+}
+
+.illustration-card{
+
+margin-top:40px;
+display:flex;
+justify-content:center;
+
+}
+
+.illustration-card img{
+
+width:260px;
+border-radius:50%;
+animation:float 4s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(-12px)}
+100%{transform:translateY(0)}
+
+}
+
+
+/* RIGHT PANEL */
+
+.admin-login-right{
+
+flex:1;
+background:#f9fafb;
+padding:80px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+
+}
+
+.admin-login-right h2{
+
+font-size:30px;
+margin-bottom:25px;
+
+}
+
+
+/* PROGRESS LINES */
+
+.progress-steps{
+
+display:flex;
+gap:10px;
+margin-bottom:25px;
+
+}
+
+.progress-line{
+
+flex:1;
+height:6px;
+background:#e5e7eb;
+border-radius:5px;
+transition:0.4s;
+
+}
+
+.progress-line.done{
+
+background:#22c55e;
+
+}
+
+
+/* FORM */
+
+.login-form{
+
+display:flex;
+flex-direction:column;
+gap:12px;
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 15px 40px rgba(0,0,0,0.1);
+
+}
+
+.login-form label{
+
+font-size:14px;
+font-weight:600;
+
+}
+
+.login-form input{
+
+width:100%;
+padding:12px;
+border-radius:8px;
+border:1px solid #ddd;
+
+}
+
+
+/* PASSWORD FIELD */
+
+.password-field{
+
+position:relative;
+
+}
+
+.password-field span{
+
+position:absolute;
+right:12px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+
+}
+
+
+/* BUTTON */
+
+.login-form button{
+
+margin-top:10px;
+background:linear-gradient(90deg,#4f46e5,#6366f1);
+color:white;
+padding:12px;
+border:none;
+border-radius:8px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+
+}
+
+.login-form button:hover{
+
+transform:translateY(-2px);
+box-shadow:0 10px 20px rgba(79,70,229,0.3);
+
+}
+
+
+/* ERROR */
+
+.error{
+
+color:#ef4444;
+font-size:13px;
+
+}
+
+/* DEMO TEXT */
+
+.demo-text{
+
+margin-top:12px;
+font-size:13px;
+color:#6b7280;
+
+}
