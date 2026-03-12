@@ -22,49 +22,51 @@ import AdminProjects from "./pages/AdminProjects";
 
 function App() {
 
-  return (
+return (
 
-    <BrowserRouter>
+<BrowserRouter>
 
-      {/* GLOBAL NAVBAR */}
-      <Navbar />
+{/* GLOBAL NAVBAR */}
+<Navbar />
 
-      {/* ROUTES */}
-      <Routes>
+{/* ROUTES */}
 
-        {/* HOME */}
-        <Route path="/" element={<Home />} />
+<Routes>
 
-        {/* MARKETPLACE */}
-        <Route path="/marketplace" element={<Marketplace />} />
+{/* HOME */}
+<Route path="/" element={<Home />} />
 
-        {/* PROJECT DETAILS */}
-        <Route path="/project/:id" element={<ProjectDetails />} />
+{/* MARKETPLACE */}
+<Route path="/marketplace" element={<Marketplace />} />
 
-        {/* APPLY PROJECT */}
-        <Route path="/apply/:id" element={<ApplyProject />} />
+{/* PROJECT DETAILS */}
+<Route path="/project/:id" element={<ProjectDetails />} />
 
-        {/* POST PROJECT */}
-        <Route path="/post-project" element={<PostProject />} />
+{/* APPLY PROJECT */}
+<Route path="/apply/:id" element={<ApplyProject />} />
 
-        {/* APPLICATION STATUS */}
-        <Route path="/application-status" element={<ApplicationStatus />} />
+{/* POST PROJECT */}
+<Route path="/post-project" element={<PostProject />} />
 
-        {/* DEVELOPER REGISTER */}
-        <Route path="/developer-register" element={<DeveloperRegister />} />
+{/* APPLICATION STATUS */}
+<Route path="/application-status" element={<ApplicationStatus />} />
 
-        {/* ADMIN DASHBOARD */}
-        <Route path="/admin" element={<AdminDashboard />} />
+{/* DEVELOPER REGISTER */}
+<Route path="/developer-register" element={<DeveloperRegister />} />
 
-        {/* ADMIN DATA */}
-        <Route path="/admin/users" element={<AdminUsers />} />
-        <Route path="/admin/projects" element={<AdminProjects />} />
+{/* ADMIN DASHBOARD */}
+<Route path="/dashboard" element={<AdminDashboard />} />
+<Route path="/admin" element={<AdminDashboard />} />
 
-      </Routes>
+{/* ADMIN MANAGEMENT */}
+<Route path="/admin/users" element={<AdminUsers />} />
+<Route path="/admin/projects" element={<AdminProjects />} />
 
-    </BrowserRouter>
+</Routes>
 
-  );
+</BrowserRouter>
+
+);
 
 }
 
