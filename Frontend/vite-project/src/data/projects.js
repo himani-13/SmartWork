@@ -1,5 +1,5 @@
 
-export const projects = [
+export  const projects = [
 
 {
 id:1,
