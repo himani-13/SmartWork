@@ -22,7 +22,7 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminProjects from "./pages/AdminProjects";
 import AdminLogin from "./pages/AdminLogin";
 
-import Signup from "./pages/Signup";
+import Signup from "./pages/signup"
 
 function App() {
 
@@ -68,11 +68,10 @@ function App() {
         <Route path="/admin/users" element={<AdminUsers />} />
         <Route path="/admin/projects" element={<AdminProjects />} />
 
-        {/* ADMIN LOGIN */}
-        <Route path="/admin-login" element={<AdminLogin />} />
+<Route path="/admin-login" element={<AdminLogin />} />
+<Route path="/dashboard" element={<AdminDashboard />} />
 
-        {/* SIGNUP */}
-        <Route path="/signup" element={<Signup />} />
+<Route path="/signup" element={<Signup />} />
 
       </Routes>
 

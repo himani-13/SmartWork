@@ -23,15 +23,21 @@ connect with top talent worldwide.
 </div>
 
 
-{/* PLATFORM */}
+{/* NAVIGATION */}
 
 <div>
 
-<h4>Platform</h4>
+<h4>Navigation</h4>
 
 <Link to="/">Home</Link>
+<br/>
+
 <Link to="/marketplace">Marketplace</Link>
-<Link to="/admin-login">Dashboard</Link>
+<br/>
+
+<Link to="/admin-login">Admin Login</Link>
+<br/>
+
 <Link to="/profile">Profile</Link>
 
 </div>
@@ -44,6 +50,8 @@ connect with top talent worldwide.
 <h4>Account</h4>
 
 <Link to="/admin-login">Login</Link>
+<br/>
+
 <Link to="/signup">Sign Up</Link>
 
 </div>
@@ -56,7 +64,11 @@ connect with top talent worldwide.
 <h4>Support</h4>
 
 <Link to="#">Help Center</Link>
+<br/>
+
 <Link to="#">Terms</Link>
+<br/>
+
 <Link to="#">Privacy Policy</Link>
 
 </div>

@@ -1,6 +1,6 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import projects from "../data/projects"
-import developers from "../data/developers"
 
 import {
 Chart as ChartJS,
@@ -14,7 +14,7 @@ Tooltip,
 Legend
 } from "chart.js"
 
-import { Bar, Pie, Line, Doughnut } from "react-chartjs-2"
+import { Line, Doughnut, Bar } from "react-chartjs-2"
 
 ChartJS.register(
 CategoryScale,
@@ -29,213 +29,363 @@ Legend
 
 function AdminDashboard(){
 
+    const navigate = useNavigate()
+
+    const handleSignOut = () => {
+localStorage.removeItem("adminAuth")   // login session remove
+navigate("/admin-login")             // login page open
+}
 const [tab,setTab] = useState("overview")
+const [filter,setFilter] = useState("all")
+const [search,setSearch] = useState("")
+
+/* USERS */
+
+const users = [
+
+{ name:"Rahul Sharma", role:"Developer", location:"India", email:"rahul.sharma@smartdev.com", joined:"Jan 2026" },
+{ name:"Ankit Verma", role:"Developer", location:"USA", email:"ankit.verma@smartdev.com", joined:"Feb 2026" },
+{ name:"Priya Patel", role:"Developer", location:"Germany", email:"priya.patel@smartdev.com", joined:"Dec 2025" },
+{ name:"Ravi Mehta", role:"Developer", location:"Singapore", email:"ravi.mehta@smartdev.com", joined:"Nov 2025" },
+{ name:"Arjun Mehra", role:"Developer", location:"Australia", email:"arjun.mehra@smartdev.com", joined:"Jan 2026" },
+
+{ name:"Aman Shah", role:"Client", location:"India", email:"aman.shah@smartdev.com", joined:"Mar 2026" },
+{ name:"Ritika Jain", role:"Client", location:"UK", email:"ritika.jain@smartdev.com", joined:"Apr 2026" },
+{ name:"Karan Malhotra", role:"Client", location:"USA", email:"karan.malhotra@smartdev.com", joined:"Feb 2026" },
+{ name:"Neha Kapoor", role:"Client", location:"Canada", email:"neha.kapoor@smartdev.com", joined:"Jan 2026" },
+{ name:"Vikram Singh", role:"Client", location:"Netherlands", email:"vikram.singh@smartdev.com", joined:"Mar 2026" }
+
+]
+
+/* FILTER */
+
+const filteredUsers = users
+.filter(user => filter==="all" ? true : user.role.toLowerCase()===filter)
+.filter(user => user.name.toLowerCase().includes(search.toLowerCase()))
 
 /* KPI */
 
+const totalUsers = users.length
 const totalProjects = projects.length
-const activeDevelopers = developers.length
-const activeProjects = 12
-const avgRating = 4.5
+const openProjects = 12
+const totalApplications = 18
 
 
 /* CHART DATA */
 
-const countryChart = {
-labels:["USA","UK","India"],
+const trendChart = {
+
+labels:["Jan","Feb","Mar","Apr","May","Jun"],
+
 datasets:[{
-label:"Projects",
-data:[5,3,4],
-backgroundColor:"#3b82f6"
+label:"Project Demand Trend",
+data:[30,45,38,55,50,65],
+borderColor:"#2563eb",
+backgroundColor:"rgba(37,99,235,0.15)",
+tension:0.4,
+fill:true
 }]
+
 }
 
-const skillChart = {
-labels:["React","Node","Python","AI"],
-datasets:[{
-label:"Demand",
-data:[6,5,3,4],
-backgroundColor:"#10b981"
-}]
-}
+const demandBarChart = {
 
-const devSkillChart = {
-labels:["Frontend","Backend","Fullstack"],
+labels:["USA","Germany","India","UAE","UK","Brazil"],
+
 datasets:[{
-label:"Developers",
-data:[4,3,5],
-backgroundColor:"#f59e0b"
+label:"Country Demand",
+data:[120,90,80,70,65,60],
+backgroundColor:"#2563eb"
 }]
+
 }
 
 const categoryChart = {
-labels:["Web","AI","FinTech"],
+
+labels:["Engineering","Design","AI","FinTech"],
+
 datasets:[{
-data:[8,3,3],
-backgroundColor:["#2563eb","#10b981","#f59e0b"]
+data:[42,18,22,18],
+backgroundColor:["#2563eb","#10b981","#f59e0b","#6366f1"]
 }]
+
 }
 
-const budgetChart = {
-labels:["$0-500","$500-1500","$1500+"],
+const overallChart = {
+
+labels:["Q1","Q2","Q3","Q4"],
+
 datasets:[{
-data:[4,6,4],
-backgroundColor:["#6366f1","#14b8a6","#f97316"]
+label:"Overall Growth",
+data:[120,180,220,300],
+backgroundColor:["#6366f1","#2563eb","#10b981","#f59e0b"]
 }]
+
 }
 
-const trendChart = {
-labels:["Jan","Feb","Mar","Apr","May","Jun"],
-datasets:[{
-label:"Projects",
-data:[2,3,5,4,6,7],
-borderColor:"#2563eb",
-backgroundColor:"#93c5fd",
-tension:0.4
-}]
+const chartOptions = {
+
+responsive:true,
+
+plugins:{ legend:{ position:"top" } },
+
+scales:{
+y:{ beginAtZero:true },
+x:{ grid:{ display:false } }
 }
+
+}
+
 
 return(
 
-<div className="admin-dashboard">
+<div className="admin-container">
 
-<h1>Admin Platform Dashboard</h1>
 
-{/* TABS */}
+{/* TOPBAR */}
 
-<div className="dashboard-tabs">
+<div className="admin-topbar">
 
-<button
-className={tab==="overview"?"active":""}
-onClick={()=>setTab("overview")}
->
-Overview
-</button>
+<h2>SmartDev Marketplace</h2>
 
-<button
-className={tab==="analytics"?"active":""}
-onClick={()=>setTab("analytics")}
->
-Analytics
-</button>
+<div className="admin-menu">
 
-<button
-className={tab==="management"?"active":""}
-onClick={()=>setTab("management")}
->
-Management
+<button onClick={()=>setTab("overview")}>Overview</button>
+<button onClick={()=>setTab("analytics")}>Analytics</button>
+<button onClick={()=>setTab("users")}>Users</button>
+
+</div>
+
+<button className="signout-btn" onClick={handleSignOut}>
+Sign Out
 </button>
 
 </div>
 
 
-{/* ================= OVERVIEW ================= */}
+{/* KPI (hidden in Users tab) */}
+
+{tab !== "users" && (
+
+<div className="admin-kpi-grid">
+
+<div className="kpi-card">
+<h4>Total Users</h4>
+<h2>{totalUsers}</h2>
+</div>
+
+<div className="kpi-card">
+<h4>Total Projects</h4>
+<h2>{totalProjects}</h2>
+</div>
+
+<div className="kpi-card">
+<h4>Open Projects</h4>
+<h2>{openProjects}</h2>
+</div>
+
+<div className="kpi-card">
+<h4>Total Applications</h4>
+<h2>{totalApplications}</h2>
+</div>
+
+</div>
+
+)}
+
+
+
+{/* OVERVIEW */}
 
 {tab==="overview" && (
 
 <div>
 
-{/* KPI */}
-
-<div className="kpi-grid">
-
-<div className="card">
-<h3>Total Projects</h3>
-<p>{totalProjects}</p>
-</div>
-
-<div className="card">
-<h3>Active Projects</h3>
-<p>{activeProjects}</p>
-</div>
-
-<div className="card">
-<h3>Active Developers</h3>
-<p>{activeDevelopers}</p>
-</div>
-
-<div className="card">
-<h3>Average Client Rating</h3>
-<p>{avgRating}</p>
-</div>
-
-</div>
-
-
 {/* CHARTS */}
 
-<h2>Platform Insights</h2>
+<div className="charts-dashboard">
 
-<div className="analytics-grid">
-
-<div className="card">
-<h3>Projects by Country</h3>
-<Bar data={countryChart}/>
+<div className="admin-card">
+<h3>Project Demand Trend</h3>
+<Line data={trendChart} options={chartOptions}/>
 </div>
 
-<div className="card">
-<h3>Top Skills Demand</h3>
-<Bar data={skillChart}/>
+<div className="admin-card">
+<h3>Category Distribution</h3>
+<Doughnut data={categoryChart}/>
+</div>
+
+<div className="admin-card">
+<h3>Country Demand</h3>
+<Bar data={demandBarChart} options={chartOptions}/>
+</div>
+
+<div className="admin-card">
+<h3>Overall Platform Growth</h3>
+<Bar data={overallChart}/>
 </div>
 
 </div>
 
 
-{/* RECENT PROJECTS */}
+{/* USER TABLE (overview without details column) */}
 
-<h2>Recent Projects</h2>
+<div className="admin-card user-management">
+
+<div className="user-header">
+
+<h2>Management Section</h2>
+
+</div>
 
 <table className="admin-table">
 
 <thead>
+
 <tr>
-<th>Project</th>
-<th>Budget</th>
-<th>Country</th>
+<th>User</th>
+<th>Role</th>
 <th>Status</th>
+<th>Joined</th>
+<th>Location</th>
 </tr>
+
 </thead>
 
 <tbody>
 
-{projects.map((p,i)=>(
+{filteredUsers.map((user,i)=>(
+
 <tr key={i}>
-<td>{p.title}</td>
-<td>${p.budget}</td>
-<td>{p.country}</td>
-<td>Active</td>
+
+<td className="user-cell">
+
+<div className="user-avatar">
+{user.name.charAt(0)}
+<span className="active-dot"></span>
+</div>
+
+<div>
+<strong>{user.name}</strong>
+<p className="user-email">{user.email}</p>
+</div>
+
+</td>
+
+<td>
+<span className="role-badge">{user.role}</span>
+</td>
+
+<td>
+<span className="status-badge">Active</span>
+</td>
+
+<td>{user.joined}</td>
+
+<td>📍 {user.location}</td>
+
 </tr>
+
 ))}
 
 </tbody>
 
 </table>
 
+</div>
 
-{/* TOP DEVELOPERS */}
+</div>
 
-<h2>Top Developers</h2>
+)}
+
+
+
+{/* USERS TAB */}
+
+{tab==="users" && (
+
+<div className="admin-card user-management">
+
+<div className="user-header">
+
+<h2>Management Section</h2>
+
+<div className="user-controls">
+
+<button onClick={()=>setFilter("all")}>All</button>
+<button onClick={()=>setFilter("developer")}>Developer</button>
+<button onClick={()=>setFilter("client")}>Client</button>
+
+<input
+type="text"
+placeholder="Search users..."
+value={search}
+onChange={(e)=>setSearch(e.target.value)}
+/>
+
+</div>
+
+</div>
+
 
 <table className="admin-table">
 
 <thead>
+
 <tr>
-<th>Name</th>
-<th>Skill</th>
-<th>Experience</th>
-<th>Rating</th>
+<th>User</th>
+<th>Role</th>
+<th>Status</th>
+<th>Joined</th>
+<th>Location</th>
+<th>Details</th>
 </tr>
+
 </thead>
 
 <tbody>
 
-{developers.map((d,i)=>(
+{filteredUsers.map((user,i)=>(
+
 <tr key={i}>
-<td>{d.name}</td>
-<td>{d.skill}</td>
-<td>{d.experience}</td>
-<td>{d.rating}</td>
+
+<td className="user-cell">
+
+<div className="user-avatar">
+{user.name.charAt(0)}
+<span className="active-dot"></span>
+</div>
+
+<div>
+<strong>{user.name}</strong>
+<p className="user-email">{user.email}</p>
+</div>
+
+</td>
+
+<td>
+<span className="role-badge">{user.role}</span>
+</td>
+
+<td>
+<span className="status-badge">Active</span>
+</td>
+
+<td>{user.joined}</td>
+
+<td>📍 {user.location}</td>
+
+<td>
+<button
+className="view-btn"
+onClick={()=>navigate(`/user/${i}`)}
+>
+View
+</button>
+</td>
+
 </tr>
+
 ))}
 
 </tbody>
@@ -248,139 +398,31 @@ Management
 
 
 
-{/* ================= ANALYTICS ================= */}
+{/* ANALYTICS */}
 
 {tab==="analytics" && (
 
-<div className="analytics-grid">
+<div className="charts-dashboard">
 
-<div className="card">
-<h3>Projects by Country</h3>
-<Bar data={countryChart}/>
+<div className="admin-card">
+<h3>Project Demand Trend</h3>
+<Line data={trendChart} options={chartOptions}/>
 </div>
 
-<div className="card">
-<h3>Projects by Skill</h3>
-<Bar data={skillChart}/>
+<div className="admin-card">
+<h3>Category Distribution</h3>
+<Doughnut data={categoryChart}/>
 </div>
 
-<div className="card">
-<h3>Developers by Skill</h3>
-<Bar data={devSkillChart}/>
+<div className="admin-card">
+<h3>Country Demand</h3>
+<Bar data={demandBarChart} options={chartOptions}/>
 </div>
 
-<div className="card">
-<h3>Project Categories</h3>
-<Pie data={categoryChart}/>
+<div className="admin-card">
+<h3>Overall Platform Growth</h3>
+<Bar data={overallChart}/>
 </div>
-
-<div className="card">
-<h3>Budget Distribution</h3>
-<Doughnut data={budgetChart}/>
-</div>
-
-<div className="card">
-<h3>Project Trend</h3>
-<Line data={trendChart}/>
-</div>
-
-</div>
-
-)}
-
-
-
-{/* ================= MANAGEMENT ================= */}
-
-{tab==="management" && (
-
-<div>
-
-<h2>Client Projects</h2>
-
-<table className="admin-table">
-
-<thead>
-<tr>
-<th>Project</th>
-<th>Budget</th>
-<th>Country</th>
-<th>Actions</th>
-</tr>
-</thead>
-
-<tbody>
-
-{projects.map((p,i)=>(
-<tr key={i}>
-
-<td>{p.title}</td>
-<td>${p.budget}</td>
-<td>{p.country}</td>
-
-<td>
-
-<button className="edit-btn">
-Edit
-</button>
-
-<button className="delete-btn">
-Delete
-</button>
-
-</td>
-
-</tr>
-))}
-
-</tbody>
-
-</table>
-
-
-
-<h2>Developers</h2>
-
-<table className="admin-table">
-
-<thead>
-<tr>
-<th>Name</th>
-<th>Skill</th>
-<th>Experience</th>
-<th>Rating</th>
-<th>Actions</th>
-</tr>
-</thead>
-
-<tbody>
-
-{developers.map((d,i)=>(
-<tr key={i}>
-
-<td>{d.name}</td>
-<td>{d.skill}</td>
-<td>{d.experience}</td>
-<td>{d.rating}</td>
-
-<td>
-
-<button className="edit-btn">
-Edit
-</button>
-
-<button className="delete-btn">
-Delete
-</button>
-
-</td>
-
-</tr>
-))}
-
-</tbody>
-
-</table>
 
 </div>
 
