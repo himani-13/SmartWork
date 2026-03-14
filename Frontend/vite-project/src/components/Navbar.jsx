@@ -15,19 +15,11 @@ Spartan Tech Marketplace
 
 <Link to="/">Home</Link>
 
-<Link to="/marketplace">Marketplace</Link>
+<Link to="/marketplace">ClientLogin</Link>
 
 <Link to="/admin-login">AdminLogin</Link>
 
 <Link to="/profile">Profile</Link>
-
-{/* LOGIN BUTTON */}
-
-<Link to="/admin-login">
-<button className="login-btn">
-Login
-</button>
-</Link>
 
 {/* SIGNUP BUTTON */}
 
