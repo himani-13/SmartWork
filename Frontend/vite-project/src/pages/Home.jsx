@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style.css";
+import Footer from "../components/Footer";
 
 function Home(){
 
@@ -13,12 +14,36 @@ const [countries,setCountries]=useState(0)
 
 useEffect(()=>{
 
-let interval=setInterval(()=>{
+let p = 0
+let d = 0
+let c = 0
+let co = 0
 
-setProjects(prev => prev < 500 ? prev + 10 : 500)
-setDevelopers(prev => prev < 200 ? prev + 5 : 200)
-setClients(prev => prev < 300 ? prev + 6 : 300)
-setCountries(prev => prev < 40 ? prev + 1 : 40)
+const interval = setInterval(()=>{
+
+if(p < 500){
+p += 5
+setProjects(p)
+}
+
+if(p >= 150 && d < 200){
+d += 3
+setDevelopers(d)
+}
+
+if(d >= 100 && c < 300){
+c += 4
+setClients(c)
+}
+
+if(c >= 150 && co < 40){
+co += 1
+setCountries(co)
+}
+
+if(p >= 500 && d >= 200 && c >= 300 && co >= 40){
+clearInterval(interval)
+}
 
 },30)
 
@@ -58,18 +83,22 @@ Search
 
 <div className="hero-buttons">
 
-<button 
+<button
 className="btn btn-primary"
 onClick={()=>navigate("/post-project")}
 >
+
 Post a Project
+
 </button>
 
-<button 
+<button
 className="btn btn-secondary"
 onClick={()=>navigate("/marketplace")}
 >
+
 Find Work
+
 </button>
 
 </div>
@@ -77,7 +106,6 @@ Find Work
 </div>
 
 </section>
-
 
 {/* TRUSTED COMPANIES */}
 
@@ -90,24 +118,22 @@ Find Work
 <div className="logo-track">
 
 <img src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" />
-<img src="https://cdn.worldvectorlogo.com/logos/google-icon.svg" />
-<img src="https://cdn.worldvectorlogo.com/logos/amazon-icon.svg" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" />
 <img src="https://cdn.worldvectorlogo.com/logos/stripe-4.svg" />
 <img src="https://cdn.worldvectorlogo.com/logos/cloudflare-1.svg" />
 <img src="https://cdn.worldvectorlogo.com/logos/ibm.svg" />
 <img src="https://cdn.worldvectorlogo.com/logos/netflix-3.svg" />
-<img src="https://cdn.worldvectorlogo.com/logos/meta-1.svg" />
-
-{/* duplicate for infinite scroll */}
+<img src="https://img.icons8.com/color/96/meta.png"/>
 
 <img src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" />
-<img src="https://cdn.worldvectorlogo.com/logos/google-icon.svg" />
-<img src="https://cdn.worldvectorlogo.com/logos/amazon-icon.svg" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" />
 <img src="https://cdn.worldvectorlogo.com/logos/stripe-4.svg" />
 <img src="https://cdn.worldvectorlogo.com/logos/cloudflare-1.svg" />
 <img src="https://cdn.worldvectorlogo.com/logos/ibm.svg" />
 <img src="https://cdn.worldvectorlogo.com/logos/netflix-3.svg" />
-<img src="https://cdn.worldvectorlogo.com/logos/meta-1.svg" />
+<img src="https://img.icons8.com/color/96/meta.png"/>
 
 </div>
 
@@ -115,8 +141,7 @@ Find Work
 
 </section>
 
-
-{/* CATEGORIES */}
+{/* PROFESSIONAL CATEGORY */}
 
 <section className="section">
 
@@ -125,31 +150,37 @@ Find Work
 <div className="category-row">
 
 <div className="category-long">
+<img src="https://img.icons8.com/fluency/48/artificial-intelligence.png"/>
 <h3>AI & Machine Learning</h3>
 <p>Build predictive models, AI automation and data intelligence systems.</p>
 </div>
 
 <div className="category-long">
+<img src="https://img.icons8.com/fluency/48/source-code.png"/>
 <h3>Web Development</h3>
 <p>Frontend, backend and full-stack development for modern applications.</p>
 </div>
 
 <div className="category-long">
+<img src="https://img.icons8.com/fluency/48/android-os.png"/>
 <h3>Mobile Apps</h3>
 <p>Native and cross-platform mobile apps for Android and iOS.</p>
 </div>
 
 <div className="category-long">
+<img src="https://img.icons8.com/fluency/48/design.png"/>
 <h3>UI / UX Design</h3>
 <p>Create modern user experiences with research-driven design.</p>
 </div>
 
 <div className="category-long">
+<img src="https://img.icons8.com/fluency/48/cloud.png"/>
 <h3>Cloud & DevOps</h3>
 <p>Infrastructure automation, CI/CD pipelines and scalable deployments.</p>
 </div>
 
 <div className="category-long">
+<img src="https://img.icons8.com/fluency/48/security-checked.png"/>
 <h3>Cybersecurity</h3>
 <p>Security audits, penetration testing and threat monitoring.</p>
 </div>
@@ -157,7 +188,6 @@ Find Work
 </div>
 
 </section>
-
 
 {/* MARKETPLACE GROWTH */}
 
@@ -191,160 +221,125 @@ Find Work
 
 </section>
 
-
 {/* HOW IT WORKS */}
 
-<section className="how-section">
+<section className="features-pro">
 
 <h2>How It Works</h2>
 
-<img
-className="how-image"
-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"
-/>
+<div className="features-grid">
 
-<div className="cards">
-
-<div className="card">
-
-<h3>1. Post Your Project</h3>
-
-<p>
-Create projects with required skills, budget and timeline.
-</p>
-
-<ul>
-<li>Define project scope</li>
-<li>Set milestones and budget</li>
-</ul>
-
+<div className="feature-pro-card">
+<img src="https://img.icons8.com/fluency/96/task.png"/>
+<h3>Post Your Project</h3>
+<p>Create project listings with skills, timeline and budget. Developers across the world can apply.</p>
 </div>
 
-<div className="card">
-
-<h3>2. Smart Matching Engine</h3>
-
-<p>
-Our AI system recommends developers based on skill match.
-</p>
-
-<ul>
-<li>Skill based recommendation</li>
-<li>Experience ranking</li>
-</ul>
-
+<div className="feature-pro-card">
+<img src="https://img.icons8.com/fluency/96/artificial-intelligence.png"/>
+<h3>Smart Matching Engine</h3>
+<p>AI analyzes developer profiles and automatically suggests the best talent for your project.</p>
 </div>
 
-<div className="card">
+<div className="feature-pro-card">
+<img src="https://img.icons8.com/fluency/96/teamwork.png"/>
+<h3>Hire & Collaborate</h3>
+<p>Select developers and collaborate using secure project tools.</p>
+</div>
 
-<h3>3. Hire & Collaborate</h3>
-
-<p>
-Select developers and collaborate until the project is finished.
-</p>
-
-<ul>
-<li>Secure communication</li>
-<li>Milestone payments</li>
-</ul>
-
+<div className="feature-pro-card">
+<img src="https://img.icons8.com/fluency/96/rocket.png"/>
+<h3>Launch Your Product</h3>
+<p>Deploy your product and scale your business globally.</p>
 </div>
 
 </div>
 
 </section>
-
 
 {/* PLATFORM FEATURES */}
 
-<section className="section">
+<section className="features-pro">
 
 <h2>Platform Features</h2>
 
-<div className="cards">
+<div className="features-grid">
 
-<div className="feature-card">
-
-<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"/>
-
-<h3>Developer Profiles</h3>
-
+<div className="feature-pro-card">
+<img src="https://img.icons8.com/fluency/96/verified-account.png"/>
+<h3>Verified Developer Profiles</h3>
 <p>
-Professional portfolios with verified skills and experience.
-</p>
+Every developer profile on Spartan Tech Marketplace goes through
+a verification process including skill validation, portfolio
+review and experience checks.</p>
 
+<p>This ensures clients connect with
+trusted professionals who deliver high-quality work.
+</p>
 </div>
 
-<div className="feature-card">
-
-<img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"/>
-
+<div className="feature-pro-card">
+<img src="https://img.icons8.com/fluency/96/online-store.png"/>
 <h3>Project Marketplace</h3>
-
 <p>
-Clients post projects and developers apply instantly.
-</p>
+Our global project marketplace allows companies to post projects,
+set budgets and timelines, and receive proposals from skilled
+developers around the world.</p>
 
+<p>This creates a competitive ecosystem
+that helps clients hire faster and smarter.
+</p>
 </div>
 
-<div className="feature-card">
-
-<img src="https://cdn-icons-png.flaticon.com/512/4149/4149675.png"/>
-
+<div className="feature-pro-card">
+<img src="https://img.icons8.com/fluency/96/artificial-intelligence.png"/>
 <h3>Smart Developer Matching</h3>
-
 <p>
-AI recommends best developers for every project.
+The intelligent matching system analyzes developer skills,
+project requirements, ratings and previous experience to
+recommend the most suitable developers automatically,
+saving time for both clients and developers.
 </p>
-
 </div>
 
-<div className="feature-card">
-
-<img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png"/>
-
+<div className="feature-pro-card">
+<img src="https://img.icons8.com/fluency/96/combo-chart.png"/>
 <h3>Analytics Dashboard</h3>
-
 <p>
-Admins monitor platform activity and performance.
+The built-in analytics dashboard helps users track project
+performance, hiring trends, developer activity and overall
+marketplace insights. These data-driven insights help
+businesses make better hiring decisions.
 </p>
-
 </div>
 
 </div>
 
 </section>
-
 
 {/* CTA */}
 
 <section className="cta-modern">
 
-<h2>Start Your Next Project Today</h2>
+<h2>Build Your Next Product With Top Developers</h2>
 
 <p>
-Join SmartWork and connect with developers around the world.
+Join thousands of companies using Spartan Tech Marketplace
+to hire skilled developers faster and smarter.
 </p>
 
-<div className="cta-buttons">
-
-<button 
-className="btn btn-primary"
-onClick={()=>navigate("/post-project")}
+<button
+className="cta-start-btn"
+onClick={()=>navigate("/signup")}
 >
-Post Project
-</button>
 
-<button 
-className="btn btn-secondary"
-onClick={()=>navigate("/marketplace")}
->
-Explore Marketplace
-</button>
+Get Started
 
-</div>
+</button>
 
 </section>
+
+<Footer/>
 
 </div>
 

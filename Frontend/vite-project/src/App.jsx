@@ -25,6 +25,8 @@ import AdminLogin from "./pages/AdminLogin";
 
 import Signup from "./pages/signup"
 
+import UserDetails from "./pages/UserDetails"
+
 function App() {
 
 return (
@@ -69,9 +71,10 @@ return (
 <Route path="/admin/projects" element={<AdminProjects />} />
 
 <Route path="/admin-login" element={<AdminLogin />} />
-<Route path="/dashboard" element={<AdminDashboard />} />
 
 <Route path="/signup" element={<Signup />} />
+
+<Route path="/user/:id" element={<UserDetails/>} />
 
 </Routes>
 
