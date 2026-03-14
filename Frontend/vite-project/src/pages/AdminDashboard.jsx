@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import {projects} from "../data/projects"
 
@@ -29,39 +29,36 @@ Legend
 
 function AdminDashboard(){
 
-    const navigate = useNavigate()
+const navigate = useNavigate()
 
-    const handleSignOut = () => {
-localStorage.removeItem("adminAuth")   // login session remove
-navigate("/admin-login")             // login page open
+const handleSignOut = () => {
+localStorage.removeItem("adminAuth")
+navigate("/admin-login")
 }
+
 const [tab,setTab] = useState("overview")
 const [filter,setFilter] = useState("all")
 const [search,setSearch] = useState("")
 
 /* USERS */
 
-const users = [
+const [users,setUsers] = useState([])
 
-{ name:"Rahul Sharma", role:"Developer", location:"India", email:"rahul.sharma@smartdev.com", joined:"Jan 2026" },
-{ name:"Ankit Verma", role:"Developer", location:"USA", email:"ankit.verma@smartdev.com", joined:"Feb 2026" },
-{ name:"Priya Patel", role:"Developer", location:"Germany", email:"priya.patel@smartdev.com", joined:"Dec 2025" },
-{ name:"Ravi Mehta", role:"Developer", location:"Singapore", email:"ravi.mehta@smartdev.com", joined:"Nov 2025" },
-{ name:"Arjun Mehra", role:"Developer", location:"Australia", email:"arjun.mehra@smartdev.com", joined:"Jan 2026" },
+useEffect(()=>{
 
-{ name:"Aman Shah", role:"Client", location:"India", email:"aman.shah@smartdev.com", joined:"Mar 2026" },
-{ name:"Ritika Jain", role:"Client", location:"UK", email:"ritika.jain@smartdev.com", joined:"Apr 2026" },
-{ name:"Karan Malhotra", role:"Client", location:"USA", email:"karan.malhotra@smartdev.com", joined:"Feb 2026" },
-{ name:"Neha Kapoor", role:"Client", location:"Canada", email:"neha.kapoor@smartdev.com", joined:"Jan 2026" },
-{ name:"Vikram Singh", role:"Client", location:"Netherlands", email:"vikram.singh@smartdev.com", joined:"Mar 2026" }
+const savedUsers = JSON.parse(localStorage.getItem("users")) || []
 
-]
+setUsers(savedUsers)
+
+},[])
+
 
 /* FILTER */
 
 const filteredUsers = users
-.filter(user => filter==="all" ? true : user.role.toLowerCase()===filter)
+.filter(user => filter==="all" ? true : user.role === filter)
 .filter(user => user.name.toLowerCase().includes(search.toLowerCase()))
+
 
 /* KPI */
 
@@ -74,9 +71,7 @@ const totalApplications = 18
 /* CHART DATA */
 
 const trendChart = {
-
 labels:["Jan","Feb","Mar","Apr","May","Jun"],
-
 datasets:[{
 label:"Project Demand Trend",
 data:[30,45,38,55,50,65],
@@ -85,64 +80,46 @@ backgroundColor:"rgba(37,99,235,0.15)",
 tension:0.4,
 fill:true
 }]
-
 }
 
 const demandBarChart = {
-
 labels:["USA","Germany","India","UAE","UK","Brazil"],
-
 datasets:[{
 label:"Country Demand",
 data:[120,90,80,70,65,60],
 backgroundColor:"#2563eb"
 }]
-
 }
 
 const categoryChart = {
-
 labels:["Engineering","Design","AI","FinTech"],
-
 datasets:[{
 data:[42,18,22,18],
 backgroundColor:["#2563eb","#10b981","#f59e0b","#6366f1"]
 }]
-
 }
 
 const overallChart = {
-
 labels:["Q1","Q2","Q3","Q4"],
-
 datasets:[{
 label:"Overall Growth",
 data:[120,180,220,300],
 backgroundColor:["#6366f1","#2563eb","#10b981","#f59e0b"]
 }]
-
 }
 
 const chartOptions = {
-
 responsive:true,
-
 plugins:{ legend:{ position:"top" } },
-
 scales:{
 y:{ beginAtZero:true },
 x:{ grid:{ display:false } }
 }
-
 }
-
 
 return(
 
 <div className="admin-container">
-
-
-{/* TOPBAR */}
 
 <div className="admin-topbar">
 
@@ -162,8 +139,6 @@ Sign Out
 
 </div>
 
-
-{/* KPI (hidden in Users tab) */}
 
 {tab !== "users" && (
 
@@ -201,8 +176,6 @@ Sign Out
 
 <div>
 
-{/* CHARTS */}
-
 <div className="charts-dashboard">
 
 <div className="admin-card">
@@ -227,16 +200,9 @@ Sign Out
 
 </div>
 
-
-{/* USER TABLE (overview without details column) */}
-
 <div className="admin-card user-management">
 
-<div className="user-header">
-
 <h2>Management Section</h2>
-
-</div>
 
 <table className="admin-table">
 
@@ -254,9 +220,9 @@ Sign Out
 
 <tbody>
 
-{filteredUsers.map((user,i)=>(
+{filteredUsers.map((user)=>(
 
-<tr key={i}>
+<tr key={user.id}>
 
 <td className="user-cell">
 
@@ -273,16 +239,20 @@ Sign Out
 </td>
 
 <td>
-<span className="role-badge">{user.role}</span>
+<span className="role-badge">
+{user.role === "developer" ? "Developer" : "Client"}
+</span>
 </td>
 
 <td>
-<span className="status-badge">Active</span>
+<span className="status-badge">
+{user.status || "Active"}
+</span>
 </td>
 
-<td>{user.joined}</td>
+<td>{user.joined || "New User"}</td>
 
-<td>📍 {user.location}</td>
+<td>📍 {user.location || "Not Added"}</td>
 
 </tr>
 
@@ -327,7 +297,6 @@ onChange={(e)=>setSearch(e.target.value)}
 
 </div>
 
-
 <table className="admin-table">
 
 <thead>
@@ -345,9 +314,9 @@ onChange={(e)=>setSearch(e.target.value)}
 
 <tbody>
 
-{filteredUsers.map((user,i)=>(
+{filteredUsers.map((user)=>(
 
-<tr key={i}>
+<tr key={user.id}>
 
 <td className="user-cell">
 
@@ -364,21 +333,25 @@ onChange={(e)=>setSearch(e.target.value)}
 </td>
 
 <td>
-<span className="role-badge">{user.role}</span>
+<span className="role-badge">
+{user.role === "developer" ? "Developer" : "Client"}
+</span>
 </td>
 
 <td>
-<span className="status-badge">Active</span>
+<span className="status-badge">
+{user.status || "Active"}
+</span>
 </td>
 
-<td>{user.joined}</td>
+<td>{user.joined || "New User"}</td>
 
-<td>📍 {user.location}</td>
+<td>📍 {user.location || "Not Added"}</td>
 
 <td>
 <button
 className="view-btn"
-onClick={()=>navigate(`/user/${i}`)}
+onClick={()=>navigate(`/user/${user.id}`)}
 >
 View
 </button>
@@ -391,38 +364,6 @@ View
 </tbody>
 
 </table>
-
-</div>
-
-)}
-
-
-
-{/* ANALYTICS */}
-
-{tab==="analytics" && (
-
-<div className="charts-dashboard">
-
-<div className="admin-card">
-<h3>Project Demand Trend</h3>
-<Line data={trendChart} options={chartOptions}/>
-</div>
-
-<div className="admin-card">
-<h3>Category Distribution</h3>
-<Doughnut data={categoryChart}/>
-</div>
-
-<div className="admin-card">
-<h3>Country Demand</h3>
-<Bar data={demandBarChart} options={chartOptions}/>
-</div>
-
-<div className="admin-card">
-<h3>Overall Platform Growth</h3>
-<Bar data={overallChart}/>
-</div>
 
 </div>
 

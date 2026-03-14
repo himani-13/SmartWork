@@ -8,6 +8,7 @@ const navigate = useNavigate()
 const [role,setRole] = useState("client")
 const [name,setName] = useState("")
 const [email,setEmail] = useState("")
+const [location,setLocation] = useState("")
 const [password,setPassword] = useState("")
 const [confirm,setConfirm] = useState("")
 const [showPass,setShowPass] = useState(false)
@@ -39,15 +40,42 @@ return
 }
 
 if(!terms){
-setError("Please accept Terms & Conditions to continue")
+setError("Please accept Terms & Conditions")
 return
 }
 
 setError("")
 
+/* CREATE USER */
+
+const newUser = {
+
+id: Date.now(),
+
+name,
+email,
+role,
+
+location: location || "Not Added",
+
+status:"Active",
+
+joined:new Date().toLocaleDateString("en-US",{
+month:"short",
+year:"numeric"
+})
+
+}
+
+const existingUsers = JSON.parse(localStorage.getItem("users")) || []
+
+existingUsers.push(newUser)
+
+localStorage.setItem("users", JSON.stringify(existingUsers))
+
 alert("Signup Successful 🎉")
 
-navigate("/dashboard")
+navigate("/profile")
 
 }
 
@@ -68,7 +96,6 @@ src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
 />
 
 </div>
-
 
 <div className="signup-right">
 
@@ -96,7 +123,6 @@ Developer
 
 </div>
 
-
 <input
 type="text"
 placeholder="Full Name"
@@ -111,6 +137,12 @@ value={email}
 onChange={(e)=>setEmail(e.target.value)}
 />
 
+<input
+type="text"
+placeholder="Location (India / USA etc)"
+value={location}
+onChange={(e)=>setLocation(e.target.value)}
+/>
 
 <div className="password-box">
 
@@ -125,14 +157,12 @@ onChange={(e)=>setPassword(e.target.value)}
 
 </div>
 
-
 <input
 type="password"
 placeholder="Confirm password"
 value={confirm}
 onChange={(e)=>setConfirm(e.target.value)}
 />
-
 
 <label className="terms">
 
@@ -146,9 +176,7 @@ I agree to the Terms & Conditions
 
 </label>
 
-
 {error && <p className="error">{error}</p>}
-
 
 <button className="signup-btn-main">
 Create Account
@@ -161,7 +189,6 @@ Create Account
 </div>
 
 )
-
 
 }
 

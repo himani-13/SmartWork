@@ -4,23 +4,13 @@ function UserDetails(){
 
 const { id } = useParams()
 
-const users = [
+const users = JSON.parse(localStorage.getItem("users")) || []
 
-{ name:"Rahul Sharma", role:"Developer", location:"India", email:"rahul.sharma@smartdev.com", joined:"Jan 2026", status:"Active" },
-{ name:"Ankit Verma", role:"Developer", location:"USA", email:"ankit.verma@smartdev.com", joined:"Feb 2026", status:"Active" },
-{ name:"Priya Patel", role:"Developer", location:"Germany", email:"priya.patel@smartdev.com", joined:"Dec 2025", status:"Active" },
-{ name:"Ravi Mehta", role:"Developer", location:"Singapore", email:"ravi.mehta@smartdev.com", joined:"Nov 2025", status:"Active" },
-{ name:"Arjun Mehra", role:"Developer", location:"Australia", email:"arjun.mehra@smartdev.com", joined:"Jan 2026", status:"Active" },
+const user = users.find(u => String(u.id) === id)
 
-{ name:"Aman Shah", role:"Client", location:"India", email:"aman.shah@smartdev.com", joined:"Mar 2026", status:"Active" },
-{ name:"Ritika Jain", role:"Client", location:"UK", email:"ritika.jain@smartdev.com", joined:"Apr 2026", status:"Active" },
-{ name:"Karan Malhotra", role:"Client", location:"USA", email:"karan.malhotra@smartdev.com", joined:"Feb 2026", status:"Active" },
-{ name:"Neha Kapoor", role:"Client", location:"Canada", email:"neha.kapoor@smartdev.com", joined:"Jan 2026", status:"Active" },
-{ name:"Vikram Singh", role:"Client", location:"Netherlands", email:"vikram.singh@smartdev.com", joined:"Mar 2026", status:"Active" }
-
-]
-
-const user = users[id]
+if(!user){
+return <h2 style={{padding:"40px"}}>User Not Found</h2>
+}
 
 return(
 
@@ -30,16 +20,8 @@ return(
 
 <div className="user-details-card">
 
-{/* Avatar with active dot */}
-
-<div className="user-avatar-wrapper">
-
 <div className="user-avatar-big">
 {user.name.charAt(0)}
-</div>
-
-<span className="active-dot-profile"></span>
-
 </div>
 
 <h2 className="user-name">{user.name}</h2>
@@ -50,19 +32,16 @@ return(
 
 <p><strong>Role:</strong> {user.role}</p>
 
-<p><strong>Location:</strong> {user.location}</p>
+<p><strong>Location:</strong> {user.location || "Not Added"}</p>
 
-<p><strong>Joined:</strong> {user.joined}</p>
+<p><strong>Joined:</strong> {user.joined || "New User"}</p>
 
-</div>
-
-{/* Center Status */}
-
-<div className="user-status-center">
-
+<p>
 <strong>Status:</strong>
-
-<span className="status-active">{user.status}</span>
+<span className="status-active">
+{user.status || "Active"}
+</span>
+</p>
 
 </div>
 

@@ -1,33 +1,20 @@
-import { useState } from "react"
-import "../style.css";
+import { useEffect, useState } from "react"
+import "../style.css"
 
 function Profile(){
 
-const [form,setForm] = useState({
-name:"",
-email:"",
-location:"",
-primarySkill:"",
-secondarySkills:"",
-experience:"",
-bio:"",
-portfolio:"",
-github:"",
-linkedin:""
-})
+const [users,setUsers] = useState([])
 
-function handleChange(e){
-setForm({
-...form,
-[e.target.name]:e.target.value
-})
-}
+useEffect(()=>{
 
-function handleSubmit(e){
-e.preventDefault()
-console.log(form)
-alert("Profile Saved")
-}
+const savedUsers = JSON.parse(localStorage.getItem("users")) || []
+
+setUsers(savedUsers)
+
+},[])
+
+const clients = users.filter(user => user.role === "client")
+const developers = users.filter(user => user.role === "developer")
 
 return(
 
@@ -35,116 +22,77 @@ return(
 
 <div className="profileContainer">
 
-<h1 className="profileTitle">Developer Profile</h1>
+<h1 className="profileTitle">User Profiles</h1>
 
-<form onSubmit={handleSubmit}>
 
-{/* PROFILE HEADER */}
+{/* CLIENTS */}
 
-<div className="profileHeader">
+<h2 className="profileHeading">Clients</h2>
 
-<div className="profilePhoto">
-<img src="https://randomuser.me/api/portraits/men/32.jpg"/>
-<button type="button">Upload Photo</button>
+<div className="profileGrid">
+
+{clients.map(user =>(
+
+<div className="profileCard" key={user.id}>
+
+<div className="profileAvatar">
+{user.name.charAt(0)}
 </div>
 
-<div className="profileHeaderInfo">
+<h3>{user.name}</h3>
 
-<div className="formGroup">
-<label>Full Name</label>
-<input type="text" name="name" onChange={handleChange}/>
-</div>
+<p className="profileEmail">{user.email}</p>
 
-<div className="formGroup">
-<label>Email</label>
-<input type="email" name="email" onChange={handleChange}/>
-</div>
+<span className="roleTag clientTag">
+Client
+</span>
 
 </div>
 
-</div>
-
-
-{/* BASIC INFO */}
-
-<div className="profileSection">
-
-<h2>Basic Information</h2>
-
-<div className="grid2">
-
-<div className="formGroup">
-<label>Location</label>
-<input type="text" name="location" onChange={handleChange}/>
-</div>
-
-<div className="formGroup">
-<label>Experience (Years)</label>
-<input type="number" name="experience" onChange={handleChange}/>
-</div>
-
-</div>
+))}
 
 </div>
 
 
-{/* SKILLS */}
+{/* DEVELOPERS */}
 
-<div className="profileSection">
+<h2 className="profileHeading">Developers</h2>
 
-<h2>Skills</h2>
+<div className="profileGrid">
 
-<div className="grid2">
+{developers.map(user =>(
 
-<div className="formGroup">
-<label>Primary Skill</label>
-<input type="text" name="primarySkill" onChange={handleChange}/>
+<div className="profileCard devCard" key={user.id}>
+
+<div className="profileAvatar">
+{user.name.charAt(0)}
 </div>
 
-<div className="formGroup">
-<label>Secondary Skills</label>
-<input type="text" name="secondarySkills" onChange={handleChange}/>
-</div>
+<h3>{user.name}</h3>
 
-</div>
+<p className="profileEmail">{user.email}</p>
 
-</div>
+{user.skills && (
+<p className="profileSkills">
+💻 {user.skills}
+</p>
+)}
 
+{user.experience && (
+<p className="profileExp">
+⭐ {user.experience} years experience
+</p>
+)}
 
-{/* BIO */}
-
-<div className="profileSection">
-
-<h2>About Developer</h2>
-
-<textarea
-name="bio"
-placeholder="Write about your experience..."
-onChange={handleChange}
-/>
-
-</div>
-
-
-{/* PORTFOLIO */}
-
-<div className="profileSection">
-
-<h2>Portfolio Links</h2>
-
-<div className="grid3">
-
-<input type="text" name="portfolio" placeholder="Portfolio Website" onChange={handleChange}/>
-<input type="text" name="github" placeholder="Github Profile" onChange={handleChange}/>
-<input type="text" name="linkedin" placeholder="LinkedIn Profile" onChange={handleChange}/>
+<span className="roleTag devTag">
+Developer
+</span>
 
 </div>
 
+))}
+
 </div>
-
-<button className="saveProfileBtn">Save Profile</button>
-
-</form>
 
 </div>
 
