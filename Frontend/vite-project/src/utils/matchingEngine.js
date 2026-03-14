@@ -1,23 +1,30 @@
-export default function calculateMatchingScore(project, developer){
+function matchingEngine(project, developers){
 
-let skillMatch = project.skills.filter(skill =>
-developer.skills.includes(skill)
-).length
+const scoredDevelopers = developers.map(dev => {
 
-let skillScore = (skillMatch / project.skills.length) * 100
+let skillMatch = dev.skills.some(skill =>
+project.skills.includes(skill)
+) ? 40 : 10
 
-let experienceScore = (developer.experience / 10) * 100
+let experienceScore = Math.min(dev.experience * 4,20)
 
-let ratingScore = (developer.rating / 5) * 100
+let ratingScore = dev.rating * 6
 
-let deliveryScore = developer.onTimeDelivery
+let onTimeScore = dev.onTime ? 10 : 5
 
-let totalScore =
-(skillScore * 0.4) +
-(experienceScore * 0.2) +
-(ratingScore * 0.3) +
-(deliveryScore * 0.1)
+let totalScore = skillMatch + experienceScore + ratingScore + onTimeScore
 
-return Math.round(totalScore)
+return {
+...dev,
+score: totalScore
+}
+
+})
+
+scoredDevelopers.sort((a,b)=>b.score-a.score)
+
+return scoredDevelopers.slice(0,5)
 
 }
+
+export default matchingEngine

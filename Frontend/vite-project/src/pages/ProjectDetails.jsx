@@ -2,7 +2,7 @@ import React from "react"
 import { useParams } from "react-router-dom"
 import { projects } from "../data/projects"
 import { developers } from "../data/developers"
-import calculateMatchingScore from "../utils/matchingEngine"
+import matchingEngine from "../utils/matchingEngine"
 
 function ProjectDetails(){
 
@@ -14,13 +14,8 @@ if(!project){
 return <h2>Project not found</h2>
 }
 
-const recommended = developers
-.map(dev => ({
-...dev,
-score: calculateMatchingScore(project, dev)
-}))
-.sort((a,b)=>b.score-a.score)
-.slice(0,5)
+// 🔥 Smart Matching Engine (Top 5 Developers)
+const recommended = matchingEngine(project, developers)
 
 return(
 
@@ -31,21 +26,32 @@ return(
 <h3>Required Skills</h3>
 <p>{project.skills.join(", ")}</p>
 
-<h2>Recommended Developers</h2>
+<h2>Top 5 Recommended Developers</h2>
 
 {recommended.map(dev => (
 
-<div key={dev.id} style={{
-border:"1px solid #ccc",
+<div
+key={dev.id}
+style={{
+border:"1px solid #ddd",
+borderRadius:"8px",
 padding:"15px",
-marginBottom:"10px"
-}}>
+marginBottom:"12px",
+boxShadow:"0 2px 6px rgba(0,0,0,0.1)"
+}}
+>
 
 <h3>{dev.name}</h3>
-<p>Skills: {dev.skills.join(", ")}</p>
-<p>Experience: {dev.experience} years</p>
-<p>⭐ Rating: {dev.rating}</p>
-<p>Matching Score: {dev.score}%</p>
+
+<p><b>Skills:</b> {dev.skills.join(", ")}</p>
+
+<p><b>Experience:</b> {dev.experience} years</p>
+
+<p>⭐ <b>Rating:</b> {dev.rating}</p>
+
+<p style={{color:"#2e7d32"}}>
+<b>Matching Score:</b> {Math.round(dev.score)}%
+</p>
 
 </div>
 

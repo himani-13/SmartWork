@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 
 /* MAIN PAGES */
 import Home from "./pages/Home";
-import Marketplace from "./pages/Marketplace";
+import Marketplace from "./pages/ClientLogin";
 import ProjectDetails from "./pages/ProjectDetails";
 import AdminDashboard from "./pages/AdminDashboard";
 
@@ -22,66 +22,70 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminProjects from "./pages/AdminProjects";
 import AdminLogin from "./pages/AdminLogin";
 
-import Signup from "./pages/signup"
-
+/* OTHER */
+import Signup from "./pages/signup";
 import UserDetails from "./pages/UserDetails";
+
+/* CLIENT */
+import ClientDashboard from "./pages/ClientDashboard";
+import RecommendedDevelopers from "./pages/RecommendedDevelopers";
+import Applications from "./pages/Applications";
+import ProjectCompleted from "./pages/ProjectCompleted";
 
 function App() {
 
-  return (
+return (
 
-    <BrowserRouter>
+<BrowserRouter>
 
-      {/* GLOBAL NAVBAR */}
-      <Navbar />
+<Navbar />
 
-      {/* ROUTES */}
-      <Routes>
+<Routes>
 
-        {/* HOME */}
-        <Route path="/" element={<Home />} />
+<Route path="/" element={<Home />} />
 
-        {/* MARKETPLACE */}
-        <Route path="/marketplace" element={<Marketplace />} />
+<Route path="/marketplace" element={<Marketplace />} />
 
-        {/* PROJECT DETAILS */}
-        <Route path="/project/:id" element={<ProjectDetails />} />
+<Route path="/project/:id" element={<ProjectDetails />} />
 
-        {/* APPLY PROJECT */}
-        <Route path="/apply/:id" element={<ApplyProject />} />
+<Route path="/apply/:id" element={<ApplyProject />} />
 
-        {/* POST PROJECT */}
-        <Route path="/post-project" element={<PostProject />} />
+<Route path="/post-project" element={<PostProject />} />
 
-        {/* PROFILE */}
-        <Route path="/profile" element={<Profile />} />
+<Route path="/profile" element={<Profile />} />
 
-        {/* APPLICATION STATUS */}
-        <Route path="/application-status" element={<ApplicationStatus />} />
+<Route path="/application-status" element={<ApplicationStatus />} />
 
-        {/* DEVELOPER REGISTER */}
-        <Route path="/developer-register" element={<DeveloperRegister />} />
+<Route path="/developer-register" element={<DeveloperRegister />} />
 
-        {/* ADMIN DASHBOARD */}
-        <Route path="/dashboard" element={<AdminDashboard />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+<Route path="/dashboard" element={<AdminDashboard />} />
 
-        {/* ADMIN MANAGEMENT */}
-        <Route path="/admin/users" element={<AdminUsers />} />
-        <Route path="/admin/projects" element={<AdminProjects />} />
+<Route path="/admin" element={<AdminDashboard />} />
+
+<Route path="/admin/users" element={<AdminUsers />} />
+
+<Route path="/admin/projects" element={<AdminProjects />} />
 
 <Route path="/admin-login" element={<AdminLogin />} />
-<Route path="/dashboard" element={<AdminDashboard />} />
 
 <Route path="/signup" element={<Signup />} />
 
-<Route path="/user/:id" element={<UserDetails/>} />
+<Route path="/user/:id" element={<UserDetails />} />
 
-      </Routes>
+<Route path="/client-dashboard" element={<ClientDashboard />} />
 
-    </BrowserRouter>
+<Route path="/recommended" element={<RecommendedDevelopers />} />
 
-  );
+<Route path="/applications" element={<Applications />} />
+
+<Route path="/completed" element={<ProjectCompleted />} />
+
+</Routes>
+
+</BrowserRouter>
+
+);
+
 }
 
 export default App;
