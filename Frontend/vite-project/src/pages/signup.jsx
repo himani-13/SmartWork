@@ -9,6 +9,7 @@ const [role,setRole] = useState("client")
 const [name,setName] = useState("")
 const [email,setEmail] = useState("")
 const [location,setLocation] = useState("")
+const [joined,setJoined] = useState("")
 const [password,setPassword] = useState("")
 const [confirm,setConfirm] = useState("")
 const [showPass,setShowPass] = useState(false)
@@ -19,13 +20,25 @@ function handleSignup(e){
 
 e.preventDefault()
 
-if(name.length < 3){
+/* VALIDATION */
+
+if(name.trim().length < 3){
 setError("Name must be at least 3 characters")
 return
 }
 
 if(!email.includes("@")){
 setError("Enter a valid email")
+return
+}
+
+if(!location){
+setError("Please enter your location")
+return
+}
+
+if(!joined){
+setError("Please select joining date")
 return
 }
 
@@ -46,32 +59,53 @@ return
 
 setError("")
 
+
+/* GET USERS FROM STORAGE */
+
+const existingUsers = JSON.parse(localStorage.getItem("users")) || []
+
+/* CHECK DUPLICATE EMAIL */
+
+const emailExists = existingUsers.find(user => user.email === email)
+
+if(emailExists){
+setError("This email is already registered")
+return
+}
+
+
 /* CREATE USER */
 
 const newUser = {
 
 id: Date.now(),
-
 name,
 email,
 role,
-
-location: location || "Not Added",
-
-status:"Active",
-
-joined:new Date().toLocaleDateString("en-US",{
-month:"short",
-year:"numeric"
-})
+location,
+joined,
+status:"Active"
 
 }
 
-const existingUsers = JSON.parse(localStorage.getItem("users")) || []
+
+/* SAVE USER */
 
 existingUsers.push(newUser)
 
 localStorage.setItem("users", JSON.stringify(existingUsers))
+
+
+/* RESET FORM */
+
+setName("")
+setEmail("")
+setLocation("")
+setJoined("")
+setPassword("")
+setConfirm("")
+setTerms(false)
+
 
 alert("Signup Successful 🎉")
 
@@ -93,9 +127,11 @@ Create an account to hire developers or start working on global projects.
 
 <img
 src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
+alt="signup"
 />
 
 </div>
+
 
 <div className="signup-right">
 
@@ -123,12 +159,14 @@ Developer
 
 </div>
 
+
 <input
 type="text"
 placeholder="Full Name"
 value={name}
 onChange={(e)=>setName(e.target.value)}
 />
+
 
 <input
 type="email"
@@ -137,12 +175,21 @@ value={email}
 onChange={(e)=>setEmail(e.target.value)}
 />
 
+
 <input
 type="text"
-placeholder="Location (India / USA etc)"
+placeholder="Your Location (India / USA)"
 value={location}
 onChange={(e)=>setLocation(e.target.value)}
 />
+
+
+<input
+type="date"
+value={joined}
+onChange={(e)=>setJoined(e.target.value)}
+/>
+
 
 <div className="password-box">
 
@@ -157,12 +204,14 @@ onChange={(e)=>setPassword(e.target.value)}
 
 </div>
 
+
 <input
 type="password"
 placeholder="Confirm password"
 value={confirm}
 onChange={(e)=>setConfirm(e.target.value)}
 />
+
 
 <label className="terms">
 
@@ -176,7 +225,9 @@ I agree to the Terms & Conditions
 
 </label>
 
+
 {error && <p className="error">{error}</p>}
+
 
 <button className="signup-btn-main">
 Create Account

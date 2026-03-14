@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import {projects} from "../data/projects"
+import { projects } from "../data/projects"
 
 import {
 Chart as ChartJS,
@@ -39,26 +39,25 @@ navigate("/admin-login")
 const [tab,setTab] = useState("overview")
 const [filter,setFilter] = useState("all")
 const [search,setSearch] = useState("")
-
-/* USERS */
-
 const [users,setUsers] = useState([])
 
 useEffect(()=>{
 
-const savedUsers = JSON.parse(localStorage.getItem("users")) || []
+const savedUsers = JSON.parse(localStorage.getItem("users"))
 
+if(savedUsers){
 setUsers(savedUsers)
+}else{
+setUsers([])
+}
 
 },[])
 
-
-/* FILTER */
+/* FILTER USERS */
 
 const filteredUsers = users
 .filter(user => filter==="all" ? true : user.role === filter)
-.filter(user => user.name.toLowerCase().includes(search.toLowerCase()))
-
+.filter(user => user.name?.toLowerCase().includes(search.toLowerCase()))
 
 /* KPI */
 
@@ -71,7 +70,9 @@ const totalApplications = 18
 /* CHART DATA */
 
 const trendChart = {
+
 labels:["Jan","Feb","Mar","Apr","May","Jun"],
+
 datasets:[{
 label:"Project Demand Trend",
 data:[30,45,38,55,50,65],
@@ -80,46 +81,63 @@ backgroundColor:"rgba(37,99,235,0.15)",
 tension:0.4,
 fill:true
 }]
+
 }
 
 const demandBarChart = {
+
 labels:["USA","Germany","India","UAE","UK","Brazil"],
+
 datasets:[{
 label:"Country Demand",
 data:[120,90,80,70,65,60],
 backgroundColor:"#2563eb"
 }]
+
 }
 
 const categoryChart = {
+
 labels:["Engineering","Design","AI","FinTech"],
+
 datasets:[{
 data:[42,18,22,18],
 backgroundColor:["#2563eb","#10b981","#f59e0b","#6366f1"]
 }]
+
 }
 
 const overallChart = {
+
 labels:["Q1","Q2","Q3","Q4"],
+
 datasets:[{
 label:"Overall Growth",
 data:[120,180,220,300],
 backgroundColor:["#6366f1","#2563eb","#10b981","#f59e0b"]
 }]
+
 }
 
 const chartOptions = {
+
 responsive:true,
+
 plugins:{ legend:{ position:"top" } },
+
 scales:{
 y:{ beginAtZero:true },
 x:{ grid:{ display:false } }
 }
+
 }
+
 
 return(
 
 <div className="admin-container">
+
+{/* TOPBAR */}
 
 <div className="admin-topbar">
 
@@ -139,6 +157,8 @@ Sign Out
 
 </div>
 
+
+{/* KPI */}
 
 {tab !== "users" && (
 
@@ -169,8 +189,7 @@ Sign Out
 )}
 
 
-
-{/* OVERVIEW */}
+{/* OVERVIEW TAB */}
 
 {tab==="overview" && (
 
@@ -200,9 +219,12 @@ Sign Out
 
 </div>
 
+
 <div className="admin-card user-management">
 
+<div className="user-header">
 <h2>Management Section</h2>
+</div>
 
 <table className="admin-table">
 
@@ -220,14 +242,14 @@ Sign Out
 
 <tbody>
 
-{filteredUsers.map((user)=>(
+{users.map((user)=>(
 
 <tr key={user.id}>
 
 <td className="user-cell">
 
 <div className="user-avatar">
-{user.name.charAt(0)}
+{user.name?.charAt(0)}
 <span className="active-dot"></span>
 </div>
 
@@ -250,9 +272,9 @@ Sign Out
 </span>
 </td>
 
-<td>{user.joined || "New User"}</td>
+<td>{user.joined}</td>
 
-<td>📍 {user.location || "Not Added"}</td>
+<td>📍 {user.location}</td>
 
 </tr>
 
@@ -268,6 +290,36 @@ Sign Out
 
 )}
 
+
+{/* ANALYTICS TAB */}
+
+{tab==="analytics" && (
+
+<div className="charts-dashboard">
+
+<div className="admin-card">
+<h3>Project Demand Trend</h3>
+<Line data={trendChart} options={chartOptions}/>
+</div>
+
+<div className="admin-card">
+<h3>Category Distribution</h3>
+<Doughnut data={categoryChart}/>
+</div>
+
+<div className="admin-card">
+<h3>Country Demand</h3>
+<Bar data={demandBarChart} options={chartOptions}/>
+</div>
+
+<div className="admin-card">
+<h3>Overall Platform Growth</h3>
+<Bar data={overallChart}/>
+</div>
+
+</div>
+
+)}
 
 
 {/* USERS TAB */}
@@ -297,6 +349,7 @@ onChange={(e)=>setSearch(e.target.value)}
 
 </div>
 
+
 <table className="admin-table">
 
 <thead>
@@ -314,14 +367,24 @@ onChange={(e)=>setSearch(e.target.value)}
 
 <tbody>
 
-{filteredUsers.map((user)=>(
+{filteredUsers.length === 0 ? (
+
+<tr>
+<td colSpan="6" style={{textAlign:"center"}}>
+No users found
+</td>
+</tr>
+
+) : (
+
+filteredUsers.map((user)=>(
 
 <tr key={user.id}>
 
 <td className="user-cell">
 
 <div className="user-avatar">
-{user.name.charAt(0)}
+{user.name?.charAt(0)}
 <span className="active-dot"></span>
 </div>
 
@@ -344,22 +407,28 @@ onChange={(e)=>setSearch(e.target.value)}
 </span>
 </td>
 
-<td>{user.joined || "New User"}</td>
+<td>{user.joined}</td>
 
-<td>📍 {user.location || "Not Added"}</td>
+<td>📍 {user.location}</td>
 
 <td>
+
 <button
 className="view-btn"
 onClick={()=>navigate(`/user/${user.id}`)}
 >
+
 View
+
 </button>
+
 </td>
 
 </tr>
 
-))}
+))
+
+)}
 
 </tbody>
 

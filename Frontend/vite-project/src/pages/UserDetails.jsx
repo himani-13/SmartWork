@@ -4,12 +4,21 @@ function UserDetails(){
 
 const { id } = useParams()
 
+/* GET USERS FROM LOCAL STORAGE */
+
 const users = JSON.parse(localStorage.getItem("users")) || []
+
+/* FIND USER */
 
 const user = users.find(u => String(u.id) === id)
 
 if(!user){
-return <h2 style={{padding:"40px"}}>User Not Found</h2>
+return(
+<div style={{padding:"40px",textAlign:"center"}}>
+<h2>User Not Found</h2>
+<p>This user may have been deleted or does not exist.</p>
+</div>
+)
 }
 
 return(
@@ -21,27 +30,22 @@ return(
 <div className="user-details-card">
 
 <div className="user-avatar-big">
-{user.name.charAt(0)}
+{user.name ? user.name.charAt(0) : "U"}
 </div>
 
-<h2 className="user-name">{user.name}</h2>
+<h2 className="user-name">{user.name || "Unknown User"}</h2>
 
 <div className="user-info-grid">
 
-<p><strong>Email:</strong> {user.email}</p>
+<p><strong>Email:</strong> {user.email || "Not Provided"}</p>
 
-<p><strong>Role:</strong> {user.role}</p>
+<p><strong>Role:</strong> {user.role === "developer" ? "Developer" : "Client"}</p>
 
-<p><strong>Location:</strong> {user.location || "Not Added"}</p>
+<p><strong>Status:</strong> {user.status || "Active"}</p>
 
 <p><strong>Joined:</strong> {user.joined || "New User"}</p>
 
-<p>
-<strong>Status:</strong>
-<span className="status-active">
-{user.status || "Active"}
-</span>
-</p>
+<p><strong>Location:</strong> {user.location || "Not Added"}</p>
 
 </div>
 

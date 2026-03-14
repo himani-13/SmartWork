@@ -24,6 +24,8 @@ import AdminLogin from "./pages/AdminLogin";
 
 import Signup from "./pages/signup"
 
+import UserDetails from "./pages/UserDetails";
+
 function App() {
 
   return (
@@ -72,6 +74,8 @@ function App() {
 <Route path="/dashboard" element={<AdminDashboard />} />
 
 <Route path="/signup" element={<Signup />} />
+
+<Route path="/user/:id" element={<UserDetails/>} />
 
       </Routes>
 
