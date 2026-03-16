@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import "../style.css"
 
 function ClientLogin(){
 
@@ -10,15 +11,13 @@ const [password,setPassword] = useState("")
 
 const handleLogin = () => {
 
-if(email && password){
-
-localStorage.setItem("role","client")
+if(email === "admin@spartan.com" && password === "123456"){
 
 navigate("/client-dashboard")
 
 }else{
 
-alert("Enter email and password")
+alert("Invalid login")
 
 }
 
@@ -26,25 +25,35 @@ alert("Enter email and password")
 
 return(
 
-<div className="login-container">
+<div className="login-page">
+
+<div className="login-card">
 
 <h2>Client Login</h2>
 
+<p className="login-subtitle">
+Access your Spartan Tech workspace
+</p>
+
 <input
 type="email"
-placeholder="Enter Email"
+placeholder="Enter email"
+value={email}
 onChange={(e)=>setEmail(e.target.value)}
 />
 
 <input
 type="password"
-placeholder="Enter Password"
+placeholder="Enter password"
+value={password}
 onChange={(e)=>setPassword(e.target.value)}
 />
 
 <button onClick={handleLogin}>
 Login
 </button>
+
+</div>
 
 </div>
 

@@ -19,13 +19,12 @@ Spartan Tech Marketplace
 
 <Link to="/admin-login">AdminLogin</Link>
 
-<Link to="/profile">Profile</Link>
 
 {/* SIGNUP BUTTON */}
 
 <Link to="/signup">
 <button className="signup-btn">
-Sign Up
+Get Started
 </button>
 </Link>
 
