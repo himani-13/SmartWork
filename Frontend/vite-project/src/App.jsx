@@ -32,6 +32,9 @@ import RecommendedDevelopers from "./pages/RecommendedDevelopers";
 import Applications from "./pages/Applications";
 import ProjectCompleted from "./pages/ProjectCompleted";
 
+import DeveloperLogin from "./pages/DeveloperLogin"
+import DeveloperRegi from "./pages/DeveloperRegi"
+
 function App() {
 
 return (
@@ -56,8 +59,6 @@ return (
 
 <Route path="/application-status" element={<ApplicationStatus />} />
 
-<Route path="/developer-register" element={<DeveloperRegister />} />
-
 <Route path="/dashboard" element={<AdminDashboard />} />
 
 <Route path="/admin" element={<AdminDashboard />} />
@@ -79,6 +80,10 @@ return (
 <Route path="/applications" element={<Applications />} />
 
 <Route path="/completed" element={<ProjectCompleted />} />
+
+<Route path="/developerlogin" element={<DeveloperLogin/>}/>
+
+<Route path="/developer-register" element={<DeveloperRegi/>}/>
 
 </Routes>
 

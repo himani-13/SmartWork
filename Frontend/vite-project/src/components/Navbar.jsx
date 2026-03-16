@@ -15,6 +15,8 @@ Spartan Tech Marketplace
 
 <Link to="/">Home</Link>
 
+<Link to="/developerlogin">Developer Login</Link>
+
 <Link to="/marketplace">ClientLogin</Link>
 
 <Link to="/admin-login">AdminLogin</Link>

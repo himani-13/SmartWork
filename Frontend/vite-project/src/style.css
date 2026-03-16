@@ -1578,7 +1578,7 @@ border:none;
 padding:12px;
 border-radius:6px;
 cursor:pointer;
-
+}
 
 
 
@@ -1699,7 +1699,6 @@ cursor:pointer;
 background:#16a34a;
 } 
 
-}
 
 /* ================= SIGNUP PAGE ================= */
 
@@ -3229,4 +3228,358 @@ transition:0.3s;
 
 .login-card button:hover{
 background:#2e7d32;
+}
+
+.login-page{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#f3f6fb;
+}
+
+.login-box{
+width:420px;
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.portal-tag{
+background:#e5efff;
+color:#2563eb;
+padding:5px 12px;
+display:inline-block;
+border-radius:6px;
+font-size:12px;
+margin-bottom:10px;
+}
+
+.login-box h2{
+margin:10px 0;
+}
+
+.login-box input{
+width:100%;
+padding:12px;
+margin-top:15px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+.login-options{
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+font-size:14px;
+}
+
+.login-btn{
+width:100%;
+margin-top:20px;
+padding:12px;
+background:#2563eb;
+border:none;
+color:white;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+.error{
+color:red;
+margin-top:10px;
+}
+
+.admin-info{
+margin-top:15px;
+font-size:13px;
+background:#e7f7ef;
+padding:8px;
+border-radius:6px;
+}
+
+.back-home{
+margin-top:10px;
+font-size:13px;
+color:#555;
+cursor:pointer;
+}
+
+.register-page{
+
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#f5f7fb;
+
+}
+
+.register-box{
+
+width:420px;
+background:white;
+padding:40px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+
+}
+
+.tag{
+
+background:#e8f0ff;
+color:#2563eb;
+display:inline-block;
+padding:5px 10px;
+border-radius:6px;
+font-size:12px;
+
+}
+
+.steps{
+
+display:flex;
+gap:15px;
+margin:15px 0;
+font-size:14px;
+
+}
+
+.steps span{
+
+background:#f1f1f1;
+padding:5px 10px;
+border-radius:6px;
+
+}
+
+.steps .active{
+
+background:#2563eb;
+color:white;
+
+}
+
+.register-box input,
+.register-box select{
+
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:8px;
+
+}
+
+.continue-btn{
+
+width:100%;
+padding:12px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+
+}
+
+.back-home{
+
+text-align:center;
+margin-top:10px;
+font-size:13px;
+color:#666;
+
+}
+
+/* PAGE BACKGROUND */
+
+.developer-register-page{
+display:flex;
+justify-content:center;
+align-items:center;
+height:90vh;
+background:#f4f6fb;
+}
+
+
+/* FORM CARD */
+
+.developer-register-box{
+
+background:white;
+padding:40px;
+width:500px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+
+}
+
+
+/* TITLE */
+
+.developer-register-box h1{
+
+font-size:28px;
+margin-bottom:25px;
+text-align:center;
+
+}
+
+
+/* FORM */
+
+.developer-form{
+
+display:flex;
+flex-direction:column;
+gap:15px;
+
+}
+
+
+/* INPUTS */
+
+.developer-form input{
+
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:14px;
+
+}
+
+
+/* BUTTON */
+
+.developer-form button{
+
+margin-top:10px;
+padding:12px;
+background:#2563eb;
+border:none;
+color:white;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+
+/* BUTTON HOVER */
+
+.developer-form button:hover{
+
+background:#1d4ed8;
+
+}
+
+
+/* REGISTER PAGE */
+
+.register-page{
+display:flex;
+justify-content:center;
+align-items:center;
+height:90vh;
+background:#f4f6fb;
+}
+
+/* CARD */
+
+.register-box{
+width:420px;
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 15px 40px rgba(0,0,0,0.1);
+}
+
+/* TAG */
+
+.tag{
+background:#e8f0ff;
+color:#2563eb;
+padding:5px 12px;
+border-radius:6px;
+font-size:12px;
+display:inline-block;
+margin-bottom:10px;
+}
+
+/* TITLE */
+
+.register-box h2{
+margin-bottom:15px;
+}
+
+/* STEPS */
+
+.steps{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+font-size:13px;
+}
+
+.steps span{
+background:#f1f1f1;
+padding:6px 10px;
+border-radius:6px;
+}
+
+.steps .active{
+background:#2563eb;
+color:white;
+}
+
+/* LABEL */
+
+.register-box label{
+font-size:13px;
+font-weight:600;
+display:block;
+margin-top:10px;
+}
+
+/* INPUT */
+
+.register-box input,
+.register-box select{
+width:100%;
+padding:12px;
+margin-top:6px;
+border:1px solid #ddd;
+border-radius:8px;
+}
+
+/* BUTTON */
+
+.continue-btn{
+width:100%;
+margin-top:20px;
+padding:12px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+font-size:15px;
+cursor:pointer;
+}
+
+.continue-btn:hover{
+background:#1d4ed8;
+}
+
+/* BACK */
+
+.back-home{
+text-align:center;
+margin-top:15px;
+font-size:13px;
+color:#666;
 }
