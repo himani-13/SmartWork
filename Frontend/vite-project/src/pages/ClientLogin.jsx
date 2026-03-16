@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ClientLogin(){
 
@@ -8,42 +8,46 @@ const navigate = useNavigate()
 const [email,setEmail] = useState("")
 const [password,setPassword] = useState("")
 
-const handleLogin = () => {
+const handleLogin = (e) =>{
 
-if(email && password){
+e.preventDefault()
 
-localStorage.setItem("role","client")
+if(email === "" || password === ""){
+alert("Please fill all fields")
+return
+}
+
+alert("Login Successful")
 
 navigate("/client-dashboard")
-
-}else{
-
-alert("Enter email and password")
-
-}
 
 }
 
 return(
 
-<div className="login-container">
+<div className="login-box">
 
-<h2>Client Login</h2>
+<h2>Sign in to your account</h2>
 
-<input
+<input 
 type="email"
-placeholder="Enter Email"
+placeholder="Work Email"
+value={email}
 onChange={(e)=>setEmail(e.target.value)}
 />
 
-<input
+<input 
 type="password"
-placeholder="Enter Password"
+placeholder="Password"
+value={password}
 onChange={(e)=>setPassword(e.target.value)}
 />
 
-<button onClick={handleLogin}>
-Login
+<button 
+className="login-btn"
+onClick={handleLogin}
+>
+Sign In
 </button>
 
 </div>
@@ -53,3 +57,5 @@ Login
 }
 
 export default ClientLogin
+
+

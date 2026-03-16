@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "../style.css";
+import React from "react";
 
 function Navbar(){
 
@@ -28,6 +29,17 @@ Spartan Tech Marketplace
 Sign Up
 </button>
 </Link>
+
+{/* NEW USER PROFILE SECTION (Added) */}
+
+<div className="user-profile">
+
+<img
+src="https://i.pravatar.cc/40"
+alt="user"
+/>
+
+</div>
 
 </div>
 
