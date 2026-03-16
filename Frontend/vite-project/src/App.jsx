@@ -33,6 +33,7 @@ import Applications from "./pages/Applications";
 import ProjectCompleted from "./pages/ProjectCompleted";
 import MyProjects from "./pages/MyProjects";
 import CreateProject from "./pages/CreateProject";
+import ClientRegister from "./pages/ClientRegister";
 
 
 function App() {
@@ -84,6 +85,7 @@ return (
 <Route path="/completed" element={<ProjectCompleted />} />
 <Route path="/projects" element={<MyProjects/>}/>
 <Route path="/create-project" element={<CreateProject/>}/>
+<Route path="/ClientRegister" element={<ClientRegister/>}/>
 </Routes>
 
 </BrowserRouter>
