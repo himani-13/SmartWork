@@ -32,6 +32,9 @@ import ClientDashboard from "./pages/ClientDashboard";
 import RecommendedDevelopers from "./pages/RecommendedDevelopers";
 import Applications from "./pages/Applications";
 import ProjectCompleted from "./pages/ProjectCompleted";
+import MyProjects from "./pages/MyProjects";
+import CreateProject from "./pages/CreateProject";
+
 
 function App() {
 
@@ -79,6 +82,17 @@ return (
 {/* SIGNUP */}
 <Route path="/signup" element={<Signup />} />
 
+<Route path="/user/:id" element={<UserDetails />} />
+
+<Route path="/client-dashboard" element={<ClientDashboard />} />
+
+<Route path="/recommended" element={<RecommendedDevelopers />} />
+
+<Route path="/applications" element={<Applications />} />
+
+<Route path="/completed" element={<ProjectCompleted />} />
+<Route path="/projects" element={<MyProjects/>}/>
+<Route path="/create-project" element={<CreateProject/>}/>
 </Routes>
 
 </BrowserRouter>
