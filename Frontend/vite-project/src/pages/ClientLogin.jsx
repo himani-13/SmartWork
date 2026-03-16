@@ -1,6 +1,5 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import "../style.css"
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ClientLogin(){
 
@@ -9,51 +8,47 @@ const navigate = useNavigate()
 const [email,setEmail] = useState("")
 const [password,setPassword] = useState("")
 
-const handleLogin = () => {
+const handleLogin = (e) =>{
 
-if(email === "admin@spartan.com" && password === "123456"){
+e.preventDefault()
+
+if(email === "" || password === ""){
+alert("Please fill all fields")
+return
+}
+
+alert("Login Successful")
 
 navigate("/client-dashboard")
-
-}else{
-
-alert("Invalid login")
-
-}
 
 }
 
 return(
 
-<div className="login-page">
+<div className="login-box">
 
-<div className="login-card">
+<h2>Sign in to your account</h2>
 
-<h2>Client Login</h2>
-
-<p className="login-subtitle">
-Access your Spartan Tech workspace
-</p>
-
-<input
+<input 
 type="email"
-placeholder="Enter email"
+placeholder="Work Email"
 value={email}
 onChange={(e)=>setEmail(e.target.value)}
 />
 
-<input
+<input 
 type="password"
-placeholder="Enter password"
+placeholder="Password"
 value={password}
 onChange={(e)=>setPassword(e.target.value)}
 />
 
-<button onClick={handleLogin}>
-Login
+<button 
+className="login-btn"
+onClick={handleLogin}
+>
+Sign In
 </button>
-
-</div>
 
 </div>
 
