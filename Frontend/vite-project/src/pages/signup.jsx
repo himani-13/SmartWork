@@ -1,9 +1,6 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 function Signup(){
-
-const navigate = useNavigate()
 
 const [role,setRole] = useState("client")
 const [name,setName] = useState("")
@@ -108,8 +105,6 @@ setTerms(false)
 
 
 alert("Signup Successful 🎉")
-
-navigate("/profile")
 
 }
 
