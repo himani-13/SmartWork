@@ -44,6 +44,20 @@ alert("Passwords do not match")
 return
 }
 
+/* SAVE DATA */
+
+const developerData = {
+name,
+email,
+country,
+skill,
+experience,
+otherSkills,
+bio
+}
+
+localStorage.setItem("developer", JSON.stringify(developerData))
+
 setStep(4)
 }
 

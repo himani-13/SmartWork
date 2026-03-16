@@ -1,6 +1,23 @@
 import "../style.css"
+import { useEffect, useState } from "react"
 
 function DeveloperDashboard(){
+
+const [developer,setDeveloper] = useState(null)
+
+useEffect(()=>{
+
+const data = JSON.parse(localStorage.getItem("developer"))
+
+if(data){
+setDeveloper(data)
+}
+
+},[])
+
+if(!developer){
+return <p style={{padding:"40px"}}>No developer data found</p>
+}
 
 return(
 
@@ -10,13 +27,17 @@ return(
 
 <div className="dev-profile">
 
-<div className="avatar">H</div>
+<div className="avatar">
+{developer.name.charAt(0)}
+</div>
 
 <div>
 
-<h2>Himanshi</h2>
+<h2>{developer.name}</h2>
 
-<p>Platform Member • React • 3 yrs exp • India</p>
+<p>
+Platform Member • {developer.skill} • {developer.experience} yrs exp • {developer.country}
+</p>
 
 </div>
 
