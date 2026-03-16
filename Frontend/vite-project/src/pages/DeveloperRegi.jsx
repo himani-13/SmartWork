@@ -1,7 +1,10 @@
 import "../style.css"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function DeveloperRegi(){
+
+const navigate = useNavigate()
 
 const [step,setStep] = useState(1)
 
@@ -22,6 +25,7 @@ const [bio,setBio] = useState("")
 
 const [password,setPassword] = useState("")
 const [confirmPassword,setConfirmPassword] = useState("")
+
 
 function nextStep(e){
 e.preventDefault()
@@ -223,8 +227,11 @@ Create Developer Account ✓
 
 <p>Your developer account is ready.</p>
 
-<button className="continue-btn">
-Go to Login →
+<button 
+className="continue-btn"
+onClick={()=>navigate("/developer-dashboard")}
+>
+Go to Dashboard →
 </button>
 
 </div>

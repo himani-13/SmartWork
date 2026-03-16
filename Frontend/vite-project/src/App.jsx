@@ -35,6 +35,8 @@ import ProjectCompleted from "./pages/ProjectCompleted";
 import MyProjects from "./pages/MyProjects";
 import CreateProject from "./pages/CreateProject";
 
+import DeveloperDashboard from "./pages/DeveloperDashboard"
+
 
 function App() {
 
@@ -93,6 +95,8 @@ return (
 <Route path="/completed" element={<ProjectCompleted />} />
 <Route path="/projects" element={<MyProjects/>}/>
 <Route path="/create-project" element={<CreateProject/>}/>
+
+<Route path="/developer-dashboard" element={<DeveloperDashboard/>}/>
 </Routes>
 
 </BrowserRouter>
