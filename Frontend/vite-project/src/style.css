@@ -1578,7 +1578,7 @@ border:none;
 padding:12px;
 border-radius:6px;
 cursor:pointer;
-
+}
 
 
 
@@ -1699,7 +1699,6 @@ cursor:pointer;
 background:#16a34a;
 } 
 
-}
 
 /* ================= SIGNUP PAGE ================= */
 
@@ -3679,6 +3678,4 @@ padding:20px;
 
 .login-card button:hover{
 background:#2e7d32;
-
-}
 }
