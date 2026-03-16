@@ -3169,7 +3169,7 @@ padding:10px 16px;
 color:white;
 border-radius:6px;
 cursor:pointer;
-<<<<<<< HEAD
+
 }
 
 
@@ -3190,7 +3190,7 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-=======
+
 }  
 
 
@@ -3202,14 +3202,14 @@ display:flex;
 justify-content:center;
 align-items:center;
 background:linear-gradient(135deg,#4f5b6b,#2f3745);
->>>>>>> bb59e6ed5950bb94acd985b9f19cedb33dc6be16
+
 }
 
 .login-card{
 background:white;
 padding:40px;
 width:350px;
-<<<<<<< HEAD
+
 border-radius:10px;
 box-shadow:0 10px 25px rgba(0,0,0,0.1);
 text-align:center;
@@ -3609,7 +3609,7 @@ border:none;
 padding:12px;
 border-radius:8px;
 font-weight:600;
-=======
+
 border-radius:12px;
 box-shadow:0 8px 25px rgba(0,0,0,0.2);
 text-align:center;
@@ -3647,12 +3647,12 @@ border:none;
 color:white;
 font-size:15px;
 border-radius:6px;
->>>>>>> bb59e6ed5950bb94acd985b9f19cedb33dc6be16
+ 
 cursor:pointer;
 transition:0.3s;
 }
 
-<<<<<<< HEAD
+
 .primary-btn:hover,
 .login-btn:hover{
 background:#4338ca;
@@ -3676,8 +3676,9 @@ justify-content:center;
 padding:20px;
 }
 
-=======
+
 .login-card button:hover{
 background:#2e7d32;
->>>>>>> bb59e6ed5950bb94acd985b9f19cedb33dc6be16
+
+}
 }
